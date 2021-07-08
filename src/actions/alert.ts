@@ -8,7 +8,7 @@ export const setAlert = (
     text: string;
     type: string;
   },
-  timeout: number = 5000
+  timeout = 5000
 ) => {
   const id = uuid();
 
@@ -17,7 +17,7 @@ export const setAlert = (
     payload: {
       id,
       text: alert.text,
-      type: alert.text as Alert["type"],
+      type: alert.type as Alert["type"],
     },
   });
 

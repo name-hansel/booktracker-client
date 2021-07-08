@@ -1,13 +1,11 @@
 import React, { useState, useContext } from "react";
 
 import { registerValidation } from "../../utils";
-import UserContext from "../../context/user";
 import AlertContext from "../../context/alert";
 import { register } from "../../actions/user";
 import { setAlert } from "../../actions/alert";
 
 const Register = () => {
-  const { userDispatch } = useContext(UserContext);
   const { alertDispatch } = useContext(AlertContext);
 
   const [formData, setFormData] = useState({

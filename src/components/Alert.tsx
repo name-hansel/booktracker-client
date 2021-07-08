@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Alert as AlertInterface } from "../interfaces";
-import AlertItem from "./AlertItem";
 
 interface Props {
   alerts: AlertInterface[];
@@ -11,7 +10,22 @@ const Alert = ({ alerts }: Props) => {
   return (
     <>
       {alerts && alerts.length > 0 ? (
-        alerts.map((alert) => <AlertItem alert={alert} />)
+        alerts.map((alert) => (
+          <div
+            key={alert.id}
+            style={{
+              backgroundColor:
+                alert.type === "success"
+                  ? "green"
+                  : alert.type === "danger"
+                  ? "red"
+                  : "gray",
+            }}
+            id={alert.id}
+          >
+            {alert.text}
+          </div>
+        ))
       ) : (
         <></>
       )}
