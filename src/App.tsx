@@ -23,6 +23,7 @@ import {
 import { setAuthToken } from "./utils";
 import { loadUser } from "./actions/user";
 import Alert from "./components/Alert";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
@@ -67,6 +68,7 @@ function App() {
                   <Link to="/login">Login</Link>
                 </button>
               </Route>
+              <ProtectedRoute path="/dashboard" component={Dashboard} />
               <ProtectedRoute
                 path="/change-password"
                 component={ChangePassword}

@@ -1,8 +1,14 @@
 import axios from "axios";
 
+const instance = axios.create({
+  baseURL: "http://localhost:5000",
+  withCredentials: true,
+});
+
 export const setAuthToken = (token: string) => {
-  if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  else delete axios.defaults.headers.common["Authorization"];
+  if (token) {
+    instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  } else delete instance.defaults.headers.common["Authorization"];
 };
 
 export const registerValidation = (
@@ -32,8 +38,10 @@ export const registerValidation = (
   return;
 };
 
-const instance = axios.create({
-  baseURL: "http://localhost:5000",
-});
+export const loginValidation = (finder: string, password: string) => {
+  if (!finder) return "Enter a valid username or email";
+  if (!password) return "Enter a valid password";
+  return;
+};
 
 export default instance;
