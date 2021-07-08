@@ -44,4 +44,13 @@ export const loginValidation = (finder: string, password: string) => {
   return;
 };
 
+export const changePasswordValidation = (password: string) => {
+  if (
+    !password ||
+    !password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+  )
+    return "Invalid password type. Must contain minimum eight characters, at least one letter and one number.";
+  return;
+};
+
 export default instance;

@@ -118,3 +118,33 @@ export const logout = async (userDispatch: React.Dispatch<UserAction>) => {
     console.error(err.message);
   }
 };
+
+export const changePassword = async (
+  alertDispatch: React.Dispatch<AlertAction>,
+  formData: {
+    oldPassword: string;
+    password: string;
+  }
+) => {
+  const { oldPassword, password } = formData;
+  // Set headers and body
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ oldPassword, newPassword: password });
+  try {
+    const res = await axios.post("/user/change-password", body, config);
+    setAlert(alertDispatch, {
+      text: res.data.message,
+      type: "success",
+    });
+  } catch (err) {
+    console.error(err.message);
+    setAlert(alertDispatch, {
+      text: err.response.data.error,
+      type: "danger",
+    });
+  }
+};

@@ -40,7 +40,7 @@ const Login = () => {
     return <Redirect to="/dashboard" />;
   }
 
-  return (
+  return !userState.loading ? (
     <div>
       <form onSubmit={(e) => onSubmit(e)}>
         <label htmlFor="finder">username or email</label>
@@ -67,6 +67,8 @@ const Login = () => {
         <a href="/forgot-password">Forgot password</a>
       </button>
     </div>
+  ) : (
+    <></>
   );
 };
 
