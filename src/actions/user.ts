@@ -107,3 +107,14 @@ export const login = async (
     });
   }
 };
+
+export const logout = async (userDispatch: React.Dispatch<UserAction>) => {
+  try {
+    await axios.post("/user/logout");
+    userDispatch({
+      type: "LOGOUT",
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
