@@ -53,11 +53,13 @@ export const register = async (
       text: res.data.message,
       type: "success",
     });
+    return true;
   } catch (err) {
     setAlert(alertDispatch, {
       text: err.response.data.error,
       type: "danger",
     });
+    return false;
   }
 };
 
@@ -183,5 +185,34 @@ export const forgotPassword = async (
       text: err.response.data.error,
       type: "danger",
     });
+  }
+};
+
+export const resetPassword = async (
+  alertDispatch: React.Dispatch<AlertAction>,
+  hash: string,
+  password: string
+) => {
+  // Set headers and body
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ password });
+  try {
+    const res = await axios.post(`/auth/reset-password/${hash}`, body, config);
+    setAlert(alertDispatch, {
+      text: res.data.message,
+      type: "success",
+    });
+    return true;
+  } catch (err) {
+    console.error(err.message);
+    setAlert(alertDispatch, {
+      text: err.response.data.error,
+      type: "danger",
+    });
+    return false;
   }
 };

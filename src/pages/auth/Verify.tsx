@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import axios from "../../utils";
 
@@ -15,6 +15,12 @@ const Verify: React.FC<RouteComponentProps<RouterProps>> = ({
 }) => {
   const [verify, setVerify] = useState(false);
   const { alertDispatch } = useContext(AlertContext);
+
+  React.useEffect(() => {
+    const hash = match.params.hash;
+    activateAccount(hash);
+  }, []);
+
   const activateAccount = async (hash: string) => {
     try {
       const res = await axios.get(`/auth/verify/${hash}`);
@@ -37,11 +43,6 @@ const Verify: React.FC<RouteComponentProps<RouterProps>> = ({
       );
     }
   };
-
-  useEffect(() => {
-    const hash = match.params.hash;
-    activateAccount(hash);
-  }, []);
 
   return <div>{verify ? "Redirecting..." : ""}</div>;
 };

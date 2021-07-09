@@ -22,7 +22,7 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const valid = registerValidation(username, email, password);
     if (password !== formData.confirmPassword)
@@ -37,13 +37,15 @@ const Register = () => {
         type: "danger",
       });
     else {
-      register(alertDispatch, { username, email, password });
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+      const res = await register(alertDispatch, { username, email, password });
+
+      if (res)
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
     }
   };
 
