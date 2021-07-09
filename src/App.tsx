@@ -61,12 +61,22 @@ function App() {
               <Route path="/reset-password/:hash" component={ResetPassword} />
               <Route path="/verify/:hash" component={Verify} />
               <Route exact path="/">
-                <button>
-                  <Link to="/register">Register</Link>
-                </button>
-                <button>
-                  <Link to="/login">Login</Link>
-                </button>
+                {!userState.loading && userState.isAuthenticated ? (
+                  <>
+                    <button>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button>
+                      <Link to="/register">Register</Link>
+                    </button>
+                    <button>
+                      <Link to="/login">Login</Link>
+                    </button>
+                  </>
+                )}
               </Route>
               <ProtectedRoute path="/dashboard" component={Dashboard} />
               <ProtectedRoute

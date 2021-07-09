@@ -1,7 +1,7 @@
 import axios from "../utils";
 
 import { AlertAction, UserAction } from "../interfaces";
-import { setAuthToken } from "../utils";
+import { setAuthToken, setNewAccessToken } from "../utils";
 import { setAlert } from "./alert";
 
 export const loadUser = async (dispatch: React.Dispatch<UserAction>) => {
@@ -11,6 +11,12 @@ export const loadUser = async (dispatch: React.Dispatch<UserAction>) => {
   }
   try {
     const res = await axios.get("/user");
+
+    // New access token has been generated
+    // Check for each private route
+    if (res.data.accessToken) {
+      setNewAccessToken(res.data.accessToken);
+    }
 
     dispatch({
       type: "LOAD_USER",
@@ -110,7 +116,7 @@ export const login = async (
 
 export const logout = async (userDispatch: React.Dispatch<UserAction>) => {
   try {
-    await axios.post("/user/logout");
+    await axios.post("/auth/logout");
     userDispatch({
       type: "LOGOUT",
     });
@@ -140,6 +146,37 @@ export const changePassword = async (
       text: res.data.message,
       type: "success",
     });
+  } catch (err) {
+    console.error(err.message);
+    setAlert(alertDispatch, {
+      text: err.response.data.error,
+      type: "danger",
+    });
+  }
+};
+
+export const forgotPassword = async (
+  alertDispatch: React.Dispatch<AlertAction>,
+  email: string
+) => {
+  // Set headers and body
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ email });
+  try {
+    const res = await axios.post("/auth/forgot-password", body, config);
+
+    setAlert(
+      alertDispatch,
+      {
+        text: res.data.message,
+        type: "success",
+      },
+      10000
+    );
   } catch (err) {
     console.error(err.message);
     setAlert(alertDispatch, {

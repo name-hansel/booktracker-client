@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { loginValidation } from "../../utils";
 import AlertContext from "../../context/alert";
@@ -64,7 +64,7 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <button>
-        <a href="/forgot-password">Forgot password</a>
+        <Link to="/forgot-password">Forgot Password</Link>
       </button>
     </div>
   ) : (

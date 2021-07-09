@@ -53,4 +53,9 @@ export const changePasswordValidation = (password: string) => {
   return;
 };
 
+export const setNewAccessToken = (token: string) => {
+  localStorage.setItem("token", token);
+  setAuthToken(token);
+};
+
 export default instance;

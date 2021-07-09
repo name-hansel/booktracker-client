@@ -35,6 +35,7 @@ const ChangePassword = () => {
       });
     } else {
       changePassword(alertDispatch, { oldPassword, password });
+      setFormData({ oldPassword: "", password: "", confirmPassword: "" });
     }
   };
 
