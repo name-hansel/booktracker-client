@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import AlertContext from "../../context/alert";
 import { setAlert } from "../../actions/alert";
 import { forgotPassword } from "../../actions/user";
+import UserContext from "../../context/user";
 
 const ForgotPassword = () => {
   const [email, setEmail] = React.useState("");
 
   const { alertDispatch } = React.useContext(AlertContext);
+  const { userState } = React.useContext(UserContext);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +28,10 @@ const ForgotPassword = () => {
       forgotPassword(alertDispatch, email);
     }
   };
+
+  if (userState.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <main className="forgot-password-main">

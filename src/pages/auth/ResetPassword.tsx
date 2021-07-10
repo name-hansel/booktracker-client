@@ -1,7 +1,8 @@
 import React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter, Redirect } from "react-router-dom";
 
 import AlertContext from "../../context/alert";
+import UserContext from "../../context/user";
 import { setAlert } from "../../actions/alert";
 import { changePasswordValidation } from "../../utils";
 import { resetPassword } from "../../actions/user";
@@ -15,6 +16,7 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
   history,
 }) => {
   const { alertDispatch } = React.useContext(AlertContext);
+  const { userState } = React.useContext(UserContext);
   const [formData, setFormData] = React.useState({
     password: "",
     confirmPassword: "",
@@ -53,10 +55,13 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
         });
         setTimeout(() => {
           history.push("/login");
-        }, 5000);
+        }, 2000);
       }
     }
   };
+  if (userState.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <main className="reset-password-main">

@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { registerValidation } from "../../utils";
 import AlertContext from "../../context/alert";
+import UserContext from "../../context/user";
 import { register } from "../../actions/user";
 import { setAlert } from "../../actions/alert";
 
 const Register = () => {
   const { alertDispatch } = useContext(AlertContext);
+  const { userState } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -49,6 +51,10 @@ const Register = () => {
         });
     }
   };
+
+  if (userState.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <main className="register-main">

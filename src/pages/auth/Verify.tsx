@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { withRouter, RouteComponentProps, Link } from "react-router-dom";
+import { withRouter, RouteComponentProps, Redirect } from "react-router-dom";
 import axios from "../../utils";
 
 import AlertContext from "../../context/alert";
+import UserContext from "../../context/user";
 import { setAlert } from "../../actions/alert";
 
 interface RouterProps {
@@ -15,6 +16,7 @@ const Verify: React.FC<RouteComponentProps<RouterProps>> = ({
 }) => {
   const [verify, setVerify] = useState(false);
   const { alertDispatch } = useContext(AlertContext);
+  const { userState } = useContext(UserContext);
 
   React.useEffect(() => {
     const hash = match.params.hash;
@@ -33,16 +35,20 @@ const Verify: React.FC<RouteComponentProps<RouterProps>> = ({
         history.push("/login");
       }, 2500);
     } catch (err) {
-      /* setAlert(
+      setAlert(
         alertDispatch,
         {
           text: err.response.data.error,
           type: "danger",
         },
         10000
-      ); */
+      );
     }
   };
+
+  if (userState.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <main className="verify-main">
