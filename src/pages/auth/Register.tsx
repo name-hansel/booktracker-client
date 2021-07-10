@@ -54,38 +54,43 @@ const Register = () => {
     <main className="register-main">
       <h1>Register</h1>
       <form onSubmit={(e) => onSubmit(e)}>
-        <label htmlFor="username">username</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
           name="username"
           id="username"
+          placeholder="Username"
           value={username}
           onChange={(e) => onChange(e)}
         />
         <br />
-        <label htmlFor="email">email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           name="email"
           id="email"
+          placeholder="Email address"
           value={email}
           onChange={(e) => onChange(e)}
         />
         <br />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
           id="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => onChange(e)}
         />
+
         <br />
-        <label htmlFor="confirmPassword">confirm password</label>
+        <label htmlFor="confirmPassword">Confirm Your Password</label>
         <input
           type="password"
           name="confirmPassword"
           id="confirmPassword"
+          placeholder="Confirm Password"
           value={formData.confirmPassword}
           onChange={(e) => onChange(e)}
         />

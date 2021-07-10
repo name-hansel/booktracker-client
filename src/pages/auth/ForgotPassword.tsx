@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import AlertContext from "../../context/alert";
 import { setAlert } from "../../actions/alert";
@@ -27,17 +28,26 @@ const ForgotPassword = () => {
   };
 
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <label htmlFor="email">Enter email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button type="submit">Send Link</button>
-    </form>
+    <main className="forgot-password-main">
+      <h1>Forgot Password</h1>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <button type="submit">Send Link</button>
+      </form>
+      <p>
+        <Link to="/login">
+          <span>Back to Login</span>
+        </Link>
+      </p>
+    </main>
   );
 };
 

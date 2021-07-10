@@ -11,12 +11,13 @@ const Landing = () => {
           <span>Show the world.</span>
         </p>
         <div className="btn-div">
-          <button>
-            <Link to="/register">Register</Link>
-          </button>
-          <button>
-            <Link to="/login">Login</Link>
-          </button>
+          <Link to="/register">
+            <button>Register</button>
+          </Link>
+
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
         </div>
       </main>
     </>

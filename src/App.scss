@@ -34,33 +34,20 @@ a {
   font-weight: 400;
 }
 
-@mixin button {
+@mixin button2 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   cursor: pointer;
+  border-radius: 0.2rem;
   margin: 0 1.5rem;
   padding: 0.5rem 1.2rem;
-  background-color: rgba($col1, 0.2);
-  border-radius: 0.2rem;
-  border: 1px solid $col1;
-  transition: all 0.2s ease-in-out;
-  a {
-    text-decoration: none;
-    color: #ffa02c;
-    font-size: 1rem;
-    font-weight: bold;
-  }
-}
-
-@mixin button2 {
-  @include button();
   background-color: rgba($col2, 0.4);
-
-  border-color: $col2;
+  border: 1px solid $col2;
   margin: 1rem 1.5rem;
   text-decoration: none;
   color: $col3;
   font-size: 1rem;
   font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
 }
 
 @mixin input {
@@ -86,7 +73,7 @@ a {
   border-radius: 0.4rem;
   margin: 2rem 0;
   background-color: rgba($col4, 0.2);
-  width: 30%;
+  width: 35%;
   height: 30rem;
   display: flex;
   flex-direction: column;
@@ -104,6 +91,7 @@ a {
       @include input;
       margin-bottom: 0.2rem;
       font-size: 1rem;
+      width: 15.625rem;
     }
     label {
       margin: 0.5rem 0;
@@ -115,11 +103,14 @@ a {
       align-self: center;
       width: auto;
     }
+    button:hover {
+      background-color: rgba($col2, 0.6);
+    }
   }
   p {
     color: $col5;
     span {
-      color: $col3;
+      color: $col2;
       font-weight: bold;
     }
   }
@@ -130,7 +121,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  h1 {
+  a {
     @include heading;
     color: $col5;
   }
@@ -164,7 +155,7 @@ nav {
   @include center-main();
   p {
     @include subheading;
-    color: #ffc074;
+    color: $col5;
     font-size: 2rem;
     margin: 2rem;
     span {
@@ -176,11 +167,13 @@ nav {
   div {
     display: flex;
     justify-content: center;
-    button {
-      @include button;
-    }
-    button:hover {
-      background-color: rgba($col1, 0.5);
+    a {
+      button {
+        @include button2;
+      }
+      button:hover {
+        background-color: rgba($col2, 0.6);
+      }
     }
   }
 }
@@ -196,4 +189,11 @@ nav {
   @include center-main;
   @include auth-main();
   height: 25rem;
+}
+
+// Forgot password
+.forgot-password-main {
+  @include center-main;
+  @include auth-main();
+  height: 15rem;
 }

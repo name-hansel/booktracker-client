@@ -45,20 +45,22 @@ const Login = () => {
       <main className="login-main">
         <h1>Login</h1>
         <form onSubmit={(e) => onSubmit(e)}>
-          <label htmlFor="finder">username or email</label>
+          <label htmlFor="finder">Enter username/email</label>
           <input
             type="text"
             name="finder"
             id="finder"
+            placeholder="Username or Email"
             value={finder}
             onChange={(e) => onChange(e)}
           />
           <br />
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => onChange(e)}
           />
