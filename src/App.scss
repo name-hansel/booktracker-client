@@ -239,7 +239,8 @@ nav {
     width: 15.5rem;
     border-radius: 0.4rem;
     padding: 1rem 0;
-    background-color: $col2;
+    background-color: $col1;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -267,20 +268,19 @@ nav {
     .bottom-links {
       display: flex;
       flex-direction: column;
-      background-color: rgba($col4, 0.6);
       border-radius: 0.4rem;
       width: 80%;
       .active {
-        background-color: rgba($col4, 1);
+        background-color: rgba($col2, 1);
       }
       button {
         margin: 0;
         padding: 0.5rem 0;
-        background-color: rgba($col4, 0.4);
+        background-color: rgba($col2, 0.4);
         border: none;
         cursor: pointer;
         box-shadow: none;
-        border: 1px solid $col4;
+        border: 1px solid $col2;
         font-size: 1rem;
         transition: background-color 0.1s ease-in-out;
         a,
@@ -295,7 +295,7 @@ nav {
         }
       }
       button:hover {
-        background-color: rgba($col4, 1);
+        background-color: rgba($col2, 1);
       }
     }
   }
