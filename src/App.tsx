@@ -77,7 +77,7 @@ function App() {
                   <Landing />
                 )}
               </Route>
-              <ProtectedRoute path="/dashboard" component={Dashboard} />
+              <ProtectedRoute path="/library" component={Dashboard} />
               <ProtectedRoute
                 path="/change-password"
                 component={ChangePassword}

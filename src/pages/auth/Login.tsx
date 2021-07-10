@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   if (userState.isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/library" />;
   }
 
   return !userState.loading ? (

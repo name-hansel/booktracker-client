@@ -12,26 +12,23 @@ const Sidebar = ({
   return (
     <section className="sidebar">
       <div className="links">
-        <a href="" className="active">
-          {" "}
-          Library{" "}
-        </a>
-        <a href="">Track Book</a>
-        <a href="">Lists</a>
-        <a href="">Reviews</a>
+        <Link to="/library">Library</Link>
+        <Link to="/track-book">Track Book</Link>
+        <Link to="/lists">Lists</Link>
+        <Link to="/review">Review</Link>
       </div>
       <div className="bottom-links">
         <button className="active">
-          <a href="">
+          <Link to="/profile">
             <i className="fa fa-user" aria-hidden="true"></i>
             Username
-          </a>
+          </Link>
         </button>
         <button>
-          <a href="">
+          <Link to="/settings">
             <i className="fa fa-cog" aria-hidden="true"></i>
             Settings
-          </a>
+          </Link>
         </button>
         <button onClick={(e) => logout(userDispatch)}>
           <span>
