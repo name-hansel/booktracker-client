@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import axios from "../../utils";
 
 import AlertContext from "../../context/alert";
@@ -33,18 +33,29 @@ const Verify: React.FC<RouteComponentProps<RouterProps>> = ({
         history.push("/login");
       }, 2500);
     } catch (err) {
-      setAlert(
+      /* setAlert(
         alertDispatch,
         {
           text: err.response.data.error,
           type: "danger",
         },
         10000
-      );
+      ); */
     }
   };
 
-  return <div>{verify ? "Redirecting..." : ""}</div>;
+  return (
+    <main className="verify-main">
+      {verify ? (
+        <h1>Redirecting to login...</h1>
+      ) : (
+        <>
+          <h1>Sorry, could not activate your account.</h1>
+          <button>Resend Activation Link</button>
+        </>
+      )}
+    </main>
+  );
 };
 
 export default withRouter(Verify);

@@ -34,7 +34,7 @@ a {
   font-weight: 400;
 }
 
-@mixin button2 {
+@mixin button {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   cursor: pointer;
   border-radius: 0.2rem;
@@ -99,7 +99,7 @@ a {
       color: $col5;
     }
     button {
-      @include button2();
+      @include button();
       align-self: center;
       width: auto;
     }
@@ -169,7 +169,7 @@ nav {
     justify-content: center;
     a {
       button {
-        @include button2;
+        @include button;
       }
       button:hover {
         background-color: rgba($col2, 0.6);
@@ -196,4 +196,29 @@ nav {
   @include center-main;
   @include auth-main();
   height: 15rem;
+}
+
+// Verify
+.verify-main {
+  @include center-main();
+  @include auth-main();
+  height: 10rem;
+  h1 {
+    // background-color: rgba($col4, 0.9);
+    padding: 1rem 1.5rem;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    color: $col5;
+    letter-spacing: 0.1rem;
+  }
+  button {
+    @include button();
+  }
+}
+
+// Reset password
+.reset-password-main {
+  @include center-main;
+  @include auth-main();
+  height: 20rem;
 }

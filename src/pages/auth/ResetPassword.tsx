@@ -59,25 +59,30 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
   };
 
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <label htmlFor="password">Enter new password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        value={password}
-        onChange={(e) => onChange(e)}
-      />
-      <label htmlFor="confirmPassword">Enter password again</label>
-      <input
-        type="password"
-        name="confirmPassword"
-        id="confirmPassword"
-        value={confirmPassword}
-        onChange={(e) => onChange(e)}
-      />
-      <button type="submit">Reset Password</button>
-    </form>
+    <main className="reset-password-main">
+      <h1>Reset Password</h1>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <label htmlFor="password">Enter new password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="New Password"
+          value={password}
+          onChange={(e) => onChange(e)}
+        />
+        <label htmlFor="confirmPassword">Enter password again</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => onChange(e)}
+        />
+        <button type="submit">Reset Password</button>
+      </form>
+    </main>
   );
 };
 
