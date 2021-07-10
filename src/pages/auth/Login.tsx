@@ -41,34 +41,45 @@ const Login = () => {
   }
 
   return !userState.loading ? (
-    <div>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <label htmlFor="finder">username or email</label>
-        <input
-          type="text"
-          name="finder"
-          id="finder"
-          value={finder}
-          onChange={(e) => onChange(e)}
-        />
-        <br />
-        <label htmlFor="password">password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-      <button>
-        <Link to="/forgot-password">Forgot Password</Link>
-      </button>
-    </div>
+    <>
+      <main className="login-main">
+        <h1>Login</h1>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <label htmlFor="finder">username or email</label>
+          <input
+            type="text"
+            name="finder"
+            id="finder"
+            value={finder}
+            onChange={(e) => onChange(e)}
+          />
+          <br />
+          <label htmlFor="password">password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+          <br />
+          <button type="submit">Login</button>
+        </form>
+        <p>
+          New user?{" "}
+          <Link to="/register">
+            <span>Create an Account</span>
+          </Link>
+        </p>
+        <p>
+          <Link to="/forgot-password">
+            <span>Forgot Password</span>
+          </Link>
+        </p>
+      </main>
+    </>
   ) : (
-    <></>
+    <>Loading...</>
   );
 };
 

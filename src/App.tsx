@@ -1,5 +1,10 @@
 import React, { useReducer, useEffect } from "react";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
@@ -7,6 +12,7 @@ import ChangePassword from "./pages/auth/ChangePassword";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Verify from "./pages/auth/Verify";
+import Landing from "./pages/Landing";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 import {
@@ -23,7 +29,10 @@ import {
 import { setAuthToken } from "./utils";
 import { loadUser } from "./actions/user";
 import Alert from "./components/Alert";
+import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
+
+import "./App.scss";
 
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
@@ -53,6 +62,7 @@ function App() {
       <Router>
         <UserContextProvider value={userContextValues}>
           <AlertContextProvider value={alertContextValues}>
+            <Navbar />
             <Alert alerts={alertState} />
             <Switch>
               <Route path="/register" component={Register} />
@@ -62,20 +72,9 @@ function App() {
               <Route path="/verify/:hash" component={Verify} />
               <Route exact path="/">
                 {!userState.loading && userState.isAuthenticated ? (
-                  <>
-                    <button>
-                      <Link to="/dashboard">Dashboard</Link>
-                    </button>
-                  </>
+                  <Redirect to="/dashboard" />
                 ) : (
-                  <>
-                    <button>
-                      <Link to="/register">Register</Link>
-                    </button>
-                    <button>
-                      <Link to="/login">Login</Link>
-                    </button>
-                  </>
+                  <Landing />
                 )}
               </Route>
               <ProtectedRoute path="/dashboard" component={Dashboard} />

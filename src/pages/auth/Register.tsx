@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { registerValidation } from "../../utils";
 import AlertContext from "../../context/alert";
@@ -50,45 +51,54 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <label htmlFor="username">username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        value={username}
-        onChange={(e) => onChange(e)}
-      />
-      <br />
-      <label htmlFor="email">email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        value={email}
-        onChange={(e) => onChange(e)}
-      />
-      <br />
-      <label htmlFor="password">password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        value={password}
-        onChange={(e) => onChange(e)}
-      />
-      <br />
-      <label htmlFor="confirmPassword">confirm password</label>
-      <input
-        type="password"
-        name="confirmPassword"
-        id="confirmPassword"
-        value={formData.confirmPassword}
-        onChange={(e) => onChange(e)}
-      />
-      <br />
-      <button type="submit">register</button>
-    </form>
+    <main className="register-main">
+      <h1>Register</h1>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <label htmlFor="username">username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={username}
+          onChange={(e) => onChange(e)}
+        />
+        <br />
+        <label htmlFor="email">email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value={email}
+          onChange={(e) => onChange(e)}
+        />
+        <br />
+        <label htmlFor="password">password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value={password}
+          onChange={(e) => onChange(e)}
+        />
+        <br />
+        <label htmlFor="confirmPassword">confirm password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={(e) => onChange(e)}
+        />
+        <br />
+        <button type="submit">Create Account</button>
+      </form>
+      <p>
+        Already have an account?{" "}
+        <Link to="/login">
+          <span>Login</span>
+        </Link>
+      </p>
+    </main>
   );
 };
 

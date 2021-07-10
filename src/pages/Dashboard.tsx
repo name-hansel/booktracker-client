@@ -8,11 +8,27 @@ const Dashboard = () => {
   const { userState, userDispatch } = useContext(UserContext);
 
   return !userState.loading ? (
-    <div>
-      User dashboard
-      <Link to="/change-password">Change password</Link>
-      <button onClick={(e) => logout(userDispatch)}>Logout</button>
-    </div>
+    <>
+      <nav>
+        <h1>Booktracker</h1>
+        <div>
+          <form>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search for a book or a profile..."
+            />
+            <i className="fa fa-search" aria-hidden="true"></i>
+          </form>
+        </div>
+      </nav>
+      <div>
+        User dashboard
+        <Link to="/change-password">Change password</Link>
+        <button onClick={(e) => logout(userDispatch)}>Logout</button>
+      </div>
+    </>
   ) : (
     <></>
   );
