@@ -116,6 +116,28 @@ a {
   }
 }
 
+// Spinner
+.loader {
+  border: 0.5rem solid $col1;
+  border-radius: 50%;
+  border-top: 0.5rem solid $col5;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+  position: fixed;
+  top: 40%;
+  left: 45%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 nav {
   display: flex;
   justify-content: space-between;

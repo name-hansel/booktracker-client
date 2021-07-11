@@ -1,6 +1,6 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import UserContext from "../context/user";
 import Sidebar from "../components/Sidebar";
@@ -8,6 +8,7 @@ import Library from "./dashboard/Library";
 import TrackBook from "./dashboard/TrackBook";
 import Lists from "./dashboard/Lists";
 import Review from "./dashboard/Review";
+import Spinner from "../components/Spinner";
 
 const Dashboard = () => {
   const { userState, userDispatch } = React.useContext(UserContext);
@@ -25,9 +26,7 @@ const Dashboard = () => {
       </section>
     </main>
   ) : (
-    <>
-      <h1>Loading</h1>
-    </>
+    <Spinner />
   );
 };
 

@@ -10,6 +10,7 @@ import axios from "../utils";
 const Navbar = () => {
   const [term, setTerm] = React.useState("");
   const [items, setItems] = React.useState<Book[]>([]);
+  const [hide, setHide] = React.useState(false);
 
   const { userState } = React.useContext(UserContext);
 
@@ -28,6 +29,7 @@ const Navbar = () => {
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHide(false);
     const search = e.target.value;
     setTerm(search);
     debounceSearch(search);
@@ -52,14 +54,19 @@ const Navbar = () => {
             value={term}
             onChange={(e) => onChange(e)}
             onFocus={(e) => onChange(e)}
-            onBlur={(e) => setItems([])}
           />
           <i className="fa fa-search" aria-hidden="true"></i>
         </form>
-        {items.length > 0 && (
+        {!hide && items.length > 0 && (
           <section className="dropdown-options">
             {items.length > 0
-              ? items.map((book) => <DropdownItem key={book.id} book={book} />)
+              ? items.map((book) => (
+                  <DropdownItem
+                    key={book.id}
+                    book={book}
+                    hide={{ hide, setHide }}
+                  />
+                ))
               : ""}
           </section>
         )}

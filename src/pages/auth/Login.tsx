@@ -6,6 +6,7 @@ import AlertContext from "../../context/alert";
 import UserContext from "../../context/user";
 import { setAlert } from "../../actions/alert";
 import { login } from "../../actions/user";
+import Spinner from "../../components/Spinner";
 
 const Login = () => {
   const { alertDispatch } = useContext(AlertContext);
@@ -81,7 +82,7 @@ const Login = () => {
       </main>
     </>
   ) : (
-    <>Loading...</>
+    <Spinner />
   );
 };
 

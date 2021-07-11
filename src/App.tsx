@@ -33,6 +33,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 
 import "./App.scss";
+import Spinner from "./components/Spinner";
 
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
@@ -77,7 +78,7 @@ function App() {
               />
               <Route exact path="/">
                 {userState.loading ? (
-                  <h1>Spinner</h1>
+                  <Spinner />
                 ) : userState.isAuthenticated ? (
                   <Redirect to="/user/library" />
                 ) : (
