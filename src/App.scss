@@ -120,13 +120,13 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   a {
     @include heading;
     color: $col5;
   }
   input {
-    background-color: transparent;
+    background-color: rgba($col1, 0.5);
     border: 1px solid rgba($col1, 0.8);
     border-radius: 0.2rem;
     outline: none;
@@ -151,10 +151,9 @@ nav {
     }
     .dropdown-options {
       position: absolute;
-      background-color: rgba($col1, 0.8);
-      border: 1px solid rgba($col1, 0.8);
-      width: 27.2rem;
-      margin: 0.5rem 0;
+      background-color: rgba($col0, 0.6);
+      width: 27.4rem;
+      margin: 0.8rem 0;
       z-index: 1;
       border-radius: 0.2rem;
       display: flex;
@@ -163,32 +162,34 @@ nav {
         cursor: pointer;
         display: flex;
         align-items: center;
-        padding: 0.6rem 0.8rem;
-        border: 1px solid rgba($col1, 0.8);
+        padding: 0.5rem 0.6rem;
         img {
           width: 2.5rem;
         }
         .book-details {
-          margin: 0 1rem;
           * {
             color: $col3;
             font-size: 0.8rem;
-            margin: 0.3rem;
+            margin: 0.2rem 0.6rem;
             letter-spacing: 1px;
           }
           h1 {
-            font-family: "Merriweather", serif;
+            font-size: 0.9rem;
           }
           h3 {
-            font-family: "Merriweather", serif;
+            font-size: 0.8rem;
           }
         }
       }
+      .option:hover {
+        background-color: rgba($col2, 0.5);
+      }
       .option:first-child {
-        padding: 0.4rem 0.8rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 0.2rem 0.2rem 0 0;
       }
       .option:last-child {
-        border-bottom: none;
+        border-radius: 0 0 0.2rem 0.2rem;
       }
     }
   }
@@ -270,21 +271,17 @@ nav {
 // Dashboard
 .dashboard-main {
   position: absolute;
-  top: 82px;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 4.5rem;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
   // Sidebar
   .sidebar {
-    position: absolute;
-    top: 0;
-    bottom: 2rem;
-    left: 2rem;
-    width: 15.5rem;
-    border-radius: 0.4rem;
+    width: 20%;
+    border-radius: 0.3rem 0 0 0.3rem;
     padding: 1rem 0;
-    background-color: $col1;
-
+    background-color: rgba($col1, 0.9);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -292,20 +289,28 @@ nav {
     .links {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 85%;
+      background-color: rgba($col4, 0.8);
+      border-radius: 0.2rem;
       a {
-        @include subheading();
-        margin: 0.2rem 1.2rem;
+        font-family: "Lato", sans-serif;
+        // margin: 0.1rem 0;
         color: $col0;
-        font-size: 1rem;
-        border-radius: 0.2rem;
-        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+      }
+      a:first-child {
+        border-radius: 0.2rem 0.2rem 0 0;
+      }
+      a:last-child {
+        border-radius: 0 0 0.2rem 0.2rem;
       }
       .active {
-        background-color: rgba($col4, 0.8);
+        background-color: rgba($col4, 0.9);
+        font-weight: bold;
       }
       a:hover {
-        background-color: rgba($col4, 0.8);
+        background-color: rgba($col4, 0.9);
       }
     }
 
@@ -342,5 +347,12 @@ nav {
         background-color: rgba($col2, 1);
       }
     }
+  }
+  .main {
+    border-left: 1px solid rgba($col2, 0.5);
+    padding: 1rem;
+    background-color: $col1;
+    width: 80%;
+    border-radius: 0 0.3rem 0.3rem 0;
   }
 }

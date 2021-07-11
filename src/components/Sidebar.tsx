@@ -12,10 +12,12 @@ const Sidebar = ({
   return (
     <section className="sidebar">
       <div className="links">
-        <Link to="/library">Library</Link>
+        <Link to="/library" className="active">
+          Library
+        </Link>
         <Link to="/track-book">Track Book</Link>
         <Link to="/lists">Lists</Link>
-        <Link to="/review">Review</Link>
+        <Link to="/review-book">Review</Link>
       </div>
       <div className="bottom-links">
         <button className="active">

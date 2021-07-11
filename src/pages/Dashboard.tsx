@@ -16,12 +16,14 @@ const Dashboard = () => {
     <Router>
       <main className="dashboard-main">
         <Sidebar userDispatch={userDispatch} />
-        <Switch>
-          <Route exact path="/library" children={Library} />
-          <Route exact path="/track-book" children={TrackBook} />
-          <Route exact path="/lists" children={Lists} />
-          <Route exact path="/review-book" children={Review} />
-        </Switch>
+        <section className="main">
+          <Switch>
+            <Route exact path="/library" children={Library} />
+            <Route exact path="/track-book" children={TrackBook} />
+            <Route exact path="/lists" children={Lists} />
+            <Route exact path="/review-book" children={Review} />
+          </Switch>
+        </section>
       </main>
     </Router>
   ) : (

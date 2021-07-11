@@ -72,7 +72,7 @@ function App() {
               <Route path="/verify/:hash" component={Verify} />
               <Route exact path="/">
                 {!userState.loading && userState.isAuthenticated ? (
-                  <Redirect to="/dashboard" />
+                  <Redirect to="/library" />
                 ) : (
                   <Landing />
                 )}

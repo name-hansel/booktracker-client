@@ -59,13 +59,7 @@ const Navbar = () => {
         {items.length > 0 && (
           <section className="dropdown-options">
             {items.length > 0
-              ? items.map((book) => (
-                  <DropdownItem
-                    key={book.id}
-                    book={book}
-                    isAuthenticated={userState.isAuthenticated}
-                  />
-                ))
+              ? items.map((book) => <DropdownItem key={book.id} book={book} />)
               : ""}
           </section>
         )}
