@@ -71,3 +71,12 @@ export interface AlertContextProps {
   alertState: Alert[];
   alertDispatch: React.Dispatch<AlertAction>;
 }
+
+// Book
+export interface Book {
+  id: string;
+  title: string;
+  authors: string[];
+  date: string;
+  imageURL: string;
+}
