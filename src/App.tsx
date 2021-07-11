@@ -70,18 +70,20 @@ function App() {
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:hash" component={ResetPassword} />
               <Route path="/verify/:hash" component={Verify} />
-              <Route exact path="/">
-                {!userState.loading && userState.isAuthenticated ? (
-                  <Redirect to="/library" />
-                ) : (
-                  <Landing />
-                )}
-              </Route>
-              <ProtectedRoute path="/library" component={Dashboard} />
+              <ProtectedRoute path="/user" component={Dashboard} />
               <ProtectedRoute
                 path="/change-password"
                 component={ChangePassword}
               />
+              <Route exact path="/">
+                {userState.loading ? (
+                  <h1>Spinner</h1>
+                ) : userState.isAuthenticated ? (
+                  <Redirect to="/user/library" />
+                ) : (
+                  <Landing />
+                )}
+              </Route>
             </Switch>
           </AlertContextProvider>
         </UserContextProvider>

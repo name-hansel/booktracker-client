@@ -37,7 +37,7 @@ const Navbar = () => {
     <nav>
       <h1>
         {userState.isAuthenticated ? (
-          <Link to="/library">Booktracker</Link>
+          <Link to="/user/library">Booktracker</Link>
         ) : (
           <Link to="/">Booktracker</Link>
         )}

@@ -319,31 +319,35 @@ nav {
       flex-direction: column;
       border-radius: 0.4rem;
       width: 80%;
-      .active {
-        background-color: rgba($col2, 1);
-      }
       button {
         margin: 0;
-        padding: 0.5rem 0;
         background-color: rgba($col2, 0.4);
         border: none;
         cursor: pointer;
         box-shadow: none;
-        border: 1px solid $col2;
         font-size: 1rem;
         transition: background-color 0.1s ease-in-out;
         a,
         span {
           display: flex;
-          margin: 0 25%;
           color: $col0;
-          width: 100%;
+          padding: 0.6rem 1rem;
+          width: auto;
         }
         i {
           margin-right: 0.8rem;
         }
       }
+      button:first-child {
+        border-radius: 0.4rem 0.4rem 0 0;
+      }
+      button:last-child {
+        border-radius: 0 0 0.4rem 0.4rem;
+      }
       button:hover {
+        background-color: rgba($col2, 1);
+      }
+      .user-active {
         background-color: rgba($col2, 1);
       }
     }

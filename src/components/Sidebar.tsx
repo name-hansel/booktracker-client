@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { logout } from "../actions/user";
 import { UserAction } from "../interfaces";
@@ -12,25 +12,31 @@ const Sidebar = ({
   return (
     <section className="sidebar">
       <div className="links">
-        <Link to="/library" className="active">
+        <NavLink to="/user/library" activeClassName="active">
           Library
-        </Link>
-        <Link to="/track-book">Track Book</Link>
-        <Link to="/lists">Lists</Link>
-        <Link to="/review-book">Review</Link>
+        </NavLink>
+        <NavLink to="/user/track-book" activeClassName="active">
+          Track Book
+        </NavLink>
+        <NavLink to="/user/lists" activeClassName="active">
+          Lists
+        </NavLink>
+        <NavLink to="/user/review-book" activeClassName="active">
+          Review
+        </NavLink>
       </div>
       <div className="bottom-links">
-        <button className="active">
-          <Link to="/profile">
+        <button>
+          <NavLink to="/user/profile" activeClassName="user-active">
             <i className="fa fa-user" aria-hidden="true"></i>
             Username
-          </Link>
+          </NavLink>
         </button>
         <button>
-          <Link to="/settings">
+          <NavLink to="/user/settings" activeClassName="user-active">
             <i className="fa fa-cog" aria-hidden="true"></i>
             Settings
-          </Link>
+          </NavLink>
         </button>
         <button onClick={(e) => logout(userDispatch)}>
           <span>
