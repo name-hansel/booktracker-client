@@ -34,6 +34,7 @@ import Dashboard from "./pages/Dashboard";
 
 import "./App.scss";
 import Spinner from "./components/Spinner";
+import BookPage from "./pages/dashboard/BookPage";
 
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
@@ -71,6 +72,7 @@ function App() {
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:hash" component={ResetPassword} />
               <Route path="/verify/:hash" component={Verify} />
+              <Route path="/book/:bookId" component={BookPage} />
               <ProtectedRoute path="/user" component={Dashboard} />
               <ProtectedRoute
                 path="/change-password"

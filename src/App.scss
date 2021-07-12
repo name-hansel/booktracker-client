@@ -382,3 +382,149 @@ nav {
     border-radius: 0 0.3rem 0.3rem 0;
   }
 }
+
+// Individual book page
+.go-back {
+  z-index: 2;
+  position: absolute;
+  top: 5.8rem;
+  left: 2.8rem;
+  right: 1.5rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  a {
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    color: $col5;
+  }
+}
+
+.page-main {
+  position: absolute;
+  top: 4.5rem;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  // background-color: rgba($col1, 0.8);
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  .left {
+    width: 15%;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .stars {
+      margin: 0.8rem 0 0;
+      color: rgba($col2, 0.5);
+      i {
+        margin: 0.1rem;
+      }
+      .fill {
+        color: $col3;
+      }
+      .rating-count {
+        color: $col3;
+      }
+    }
+    .button-div {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+      button {
+        @include button();
+        background-color: rgba($col4, 0.6);
+        border: none;
+        color: $col0;
+        margin: 0.5rem;
+      }
+      button:hover {
+        background-color: rgba($col4, 0.8);
+      }
+    }
+    img {
+      width: 75%;
+    }
+  }
+
+  .right {
+    width: 75%;
+    padding: 1.5rem;
+    .main-details {
+      padding: 2rem;
+      .title {
+        font-size: 2rem;
+        font-family: "Merriweather", serif;
+        font-weight: 900;
+        color: $col5;
+      }
+      .authors {
+        font-family: "Merriweather", serif;
+        font-size: 1.2rem;
+        color: rgba($col5, 0.8);
+      }
+    }
+    .more-details {
+      background-color: $col0;
+      margin: 1.2rem 0;
+      border-radius: 0.3rem;
+      padding: 0 2rem;
+      .options {
+        display: flex;
+        justify-content: space-around;
+        margin: 0 0 0.6rem;
+        .option {
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid transparent;
+          cursor: pointer;
+          transition: border-bottom 0.1s ease-in;
+          a {
+            font-family: "Merriweather", serif;
+            font-weight: 900;
+            color: rgba($col5, 0.9);
+          }
+        }
+        .option:hover {
+          border-bottom: 1px solid $col3;
+        }
+        .active {
+          border-bottom: 1px solid $col3;
+        }
+      }
+      .subtitle {
+        font-size: 1rem;
+        // font-style: italic;
+        font-weight: bold;
+        color: $col4;
+        padding: 0.5rem 0;
+      }
+      .description {
+        font-size: 1rem;
+        text-align: justify;
+        color: $col5;
+      }
+      .more-more-details {
+        background-color: rgba($col4, 0.5);
+        min-width: 10rem;
+        max-width: 40%;
+        padding: 0.5rem 0.8rem;
+        border-radius: 0.3rem;
+        margin: 0.8rem 0;
+        h5 {
+          font-size: 0.9rem;
+          margin: 0.2rem 0;
+          color: rgba($col5, 0.9);
+        }
+        span {
+          font-weight: bold;
+          margin: 0 0.2rem 0 0;
+          color: rgba($col5, 0.9);
+        }
+      }
+    }
+  }
+}
