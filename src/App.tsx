@@ -34,7 +34,7 @@ import Dashboard from "./pages/Dashboard";
 
 import "./App.scss";
 import Spinner from "./components/Spinner";
-import BookPage from "./pages/dashboard/BookPage";
+import BookPage from "./pages/BookPage";
 
 function App() {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
