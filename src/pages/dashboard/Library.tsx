@@ -1,6 +1,6 @@
 import React from "react";
 
-const Library = () => {
+const Library: React.FC = () => {
   return <h1>Library</h1>;
 };
 

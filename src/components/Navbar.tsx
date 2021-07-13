@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 
-import { Book } from "../interfaces";
+import { DropDownBook } from "../interfaces";
 import UserContext from "../context/user";
 import DropdownItem from "./DropdownItem";
 import axios from "../utils";
 
 const Navbar = () => {
   const [term, setTerm] = React.useState("");
-  const [items, setItems] = React.useState<Book[]>([]);
+  const [items, setItems] = React.useState<DropDownBook[]>([]);
   const [hide, setHide] = React.useState(false);
 
   const { userState } = React.useContext(UserContext);

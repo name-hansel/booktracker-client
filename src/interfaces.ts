@@ -73,10 +73,26 @@ export interface AlertContextProps {
 }
 
 // Book
-export interface Book {
+export interface DropDownBook {
   id: string;
   title: string;
   authors: string[];
   date: string;
   imageURL: string;
 }
+
+// Library
+export interface LibraryBook {
+  googleBooksId: string;
+  title: string;
+  authors: string[];
+  dateAdded: string;
+  imageURL: string;
+}
+
+interface GET_LIBRARY {
+  type: "GET_LIBRARY";
+  payload: LibraryBook[];
+}
+
+export type LibraryAction = GET_LIBRARY;

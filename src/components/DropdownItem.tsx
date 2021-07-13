@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Book } from "../interfaces";
+import { DropDownBook } from "../interfaces";
 
 const DropdownItem = ({
   book,
   hide: { hide, setHide },
 }: {
-  book: Book;
+  book: DropDownBook;
   hide: {
     hide: boolean;
     setHide: React.Dispatch<React.SetStateAction<boolean>>;
