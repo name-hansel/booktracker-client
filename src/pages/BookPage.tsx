@@ -6,6 +6,8 @@ import Spinner from "../components/Spinner";
 import AlertContext from "../context/alert";
 import { setAlert } from "../actions/alert";
 import UserContext from "../context/user";
+import { useDispatch } from "react-redux";
+import { addBookToLibrary } from "../redux/Library/library.actions";
 
 interface RouterProps {
   bookId: string;
@@ -17,6 +19,8 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
 }) => {
   const { alertDispatch } = React.useContext(AlertContext);
   const { userState } = React.useContext(UserContext);
+
+  const dispatch = useDispatch();
 
   const [bookData, setBookData] = React.useState({
     loading: true,
@@ -30,7 +34,7 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
     categories: [],
     averageRating: "",
     ratingsCount: "",
-    imageUrl: "",
+    imageURL: "",
   });
 
   const getBookData = React.useCallback(
@@ -69,7 +73,10 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
       </button>
       <main className="page-main">
         <section className="left">
-          <img src={bookData.imageUrl} alt={bookData.title} />
+          <img
+            src={bookData.imageURL ? bookData.imageURL : "/placeholder.jpg"}
+            alt={bookData.title}
+          />
           <div className="stars">
             <i className="fas fa-star fill"></i>
             <i className="fas fa-star fill"></i>
@@ -80,7 +87,20 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
           </div>
           {userState.isAuthenticated ? (
             <div className="button-div">
-              <button>Add to library</button>
+              <button
+                onClick={(e) =>
+                  dispatch(
+                    addBookToLibrary({
+                      googleBooksId: match.params.bookId,
+                      title: bookData.title,
+                      authors: bookData.authors,
+                      imageURL: bookData.imageURL,
+                    })
+                  )
+                }
+              >
+                Add to library
+              </button>
               <button>Review Book</button>
             </div>
           ) : (

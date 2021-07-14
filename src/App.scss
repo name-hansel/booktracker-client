@@ -294,10 +294,11 @@ nav {
 .dashboard-main {
   position: absolute;
   top: 4.5rem;
-  bottom: 1rem;
   left: 1.5rem;
   right: 1.5rem;
   display: flex;
+  padding: 0 0 1rem;
+  min-height: 85%;
   // Sidebar
   .sidebar {
     width: 20%;
@@ -306,7 +307,6 @@ nav {
     background-color: rgba($col1, 0.9);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     .links {
       display: flex;
@@ -314,6 +314,7 @@ nav {
       width: 85%;
       background-color: rgba($col4, 0.8);
       border-radius: 0.2rem;
+      margin: 0 0 1rem;
       a {
         font-family: "Lato", sans-serif;
         // margin: 0.1rem 0;

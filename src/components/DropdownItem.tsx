@@ -5,7 +5,7 @@ import { DropDownBook } from "../interfaces";
 
 const DropdownItem = ({
   book,
-  hide: { hide, setHide },
+  hide: { setHide },
 }: {
   book: DropDownBook;
   hide: {
@@ -19,7 +19,10 @@ const DropdownItem = ({
       className="option"
       onClick={(e) => setHide(true)}
     >
-      <img src={book.imageURL} alt={book.title} />
+      <img
+        src={book.imageURL ? book.imageURL : "/placeholder.jpg"}
+        alt={book.title}
+      />
       <div className="book-details">
         <h1>{book.title}</h1>
         <h3>{book.authors && book.authors.join(", ")}</h3>

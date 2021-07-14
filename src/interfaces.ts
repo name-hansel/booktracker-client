@@ -90,11 +90,18 @@ interface GET_LIBRARY {
   };
 }
 
+export interface ADD_BOOK_TO_LIBRARY {
+  type: "ADD_BOOK_TO_LIBRARY";
+  payload: {
+    book: LibraryBook;
+  };
+}
+
 export interface LibraryBook {
   googleBooksId: string;
   title: string;
   authors: string[];
-  dateAdded: string;
+  dateAdded?: string;
   imageURL: string;
 }
 
@@ -103,7 +110,7 @@ export interface LibraryState {
   loading: boolean;
 }
 
-export type LibraryAction = GET_LIBRARY;
+export type LibraryAction = GET_LIBRARY | ADD_BOOK_TO_LIBRARY;
 
 // State interface
 export interface State {

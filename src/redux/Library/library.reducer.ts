@@ -13,6 +13,12 @@ const reducer = (state = initialState, action: LibraryAction): LibraryState => {
         library: action.payload.library,
         loading: false,
       };
+    case "ADD_BOOK_TO_LIBRARY":
+      return {
+        ...state,
+        library: [action.payload.book, ...state.library],
+        loading: false,
+      };
     default:
       return state;
   }
