@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import axios from "../utils";
+import DOMPurify from "dompurify";
 
 import Spinner from "../components/Spinner";
 import AlertContext from "../context/alert";
@@ -77,14 +78,18 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
             src={bookData.imageURL ? bookData.imageURL : "/placeholder.jpg"}
             alt={bookData.title}
           />
-          <div className="stars">
-            <i className="fas fa-star fill"></i>
-            <i className="fas fa-star fill"></i>
-            <i className="fas fa-star fill"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <span className="rating-count">({bookData.ratingsCount})</span>
-          </div>
+          {bookData.averageRating ? (
+            <div className="stars">
+              <i className="fas fa-star fill"></i>
+              <i className="fas fa-star fill"></i>
+              <i className="fas fa-star fill"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <span className="rating-count">({bookData.ratingsCount})</span>
+            </div>
+          ) : (
+            ""
+          )}
           {userState.isAuthenticated ? (
             <div className="button-div">
               <button
@@ -131,9 +136,12 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
             <h5 className="subtitle">
               {bookData.subtitle ? bookData.subtitle : ""}
             </h5>
-            <p className="description">
-              {bookData.description ? bookData.description : ""}
-            </p>
+            <p
+              className="description"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(bookData.description),
+              }}
+            ></p>
             <div className="more-more-details">
               <h5>
                 <span>Published date: </span>

@@ -173,7 +173,7 @@ nav {
     }
     .dropdown-options {
       position: absolute;
-      background-color: rgba($col0, 0.9);
+      background-color: $col0;
       width: 27.4rem;
       margin: 0.8rem 0;
       z-index: 1;
@@ -490,6 +490,11 @@ nav {
       margin: 0;
       border-radius: 0.3rem;
       padding: 1rem 2rem;
+      p {
+        ul {
+          padding: 0 1.5rem;
+        }
+      }
       .options {
         display: flex;
         justify-content: space-around;

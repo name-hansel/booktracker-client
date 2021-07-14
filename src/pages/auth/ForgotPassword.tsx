@@ -26,6 +26,7 @@ const ForgotPassword = () => {
       });
     else {
       forgotPassword(alertDispatch, email);
+      setEmail("");
     }
   };
 
