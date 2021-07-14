@@ -1,11 +1,18 @@
-import { LibraryBook, LibraryAction } from "../../interfaces";
+import { LibraryAction, LibraryState } from "../../interfaces";
 
-const initialState: LibraryBook[] = [];
+const initialState: LibraryState = {
+  library: [],
+  loading: true,
+};
 
-const reducer = (state = initialState, action: LibraryAction) => {
+const reducer = (state = initialState, action: LibraryAction): LibraryState => {
   switch (action.type) {
     case "GET_LIBRARY":
-      return action.payload;
+      return {
+        ...state,
+        library: action.payload.library,
+        loading: false,
+      };
     default:
       return state;
   }

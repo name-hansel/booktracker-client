@@ -3,7 +3,8 @@
 interface LOAD_USER {
   type: "LOAD_USER";
   payload: {
-    user: { _id: string; username: string; email: string };
+    _id: string;
+    username: string;
   };
 }
 
@@ -82,6 +83,13 @@ export interface DropDownBook {
 }
 
 // Library
+interface GET_LIBRARY {
+  type: "GET_LIBRARY";
+  payload: {
+    library: LibraryBook[];
+  };
+}
+
 export interface LibraryBook {
   googleBooksId: string;
   title: string;
@@ -90,9 +98,14 @@ export interface LibraryBook {
   imageURL: string;
 }
 
-interface GET_LIBRARY {
-  type: "GET_LIBRARY";
-  payload: LibraryBook[];
+export interface LibraryState {
+  library: LibraryBook[];
+  loading: boolean;
 }
 
 export type LibraryAction = GET_LIBRARY;
+
+// State interface
+export interface State {
+  library: LibraryState;
+}

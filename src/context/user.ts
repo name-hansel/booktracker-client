@@ -13,7 +13,10 @@ export const userReducer = (
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: action.payload.user,
+        user: {
+          _id: action.payload._id,
+          username: action.payload.username,
+        },
       };
 
     case "LOGIN_SUCCESS":

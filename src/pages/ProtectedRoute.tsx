@@ -9,7 +9,7 @@ interface PrivateRouteProps extends RouteProps {
 const ProtectedRoute = ({
   component: Component,
   ...rest
-}: PrivateRouteProps) => {
+}: PrivateRouteProps): JSX.Element => {
   const {
     userState: { isAuthenticated, loading },
   } = useContext(UserContext);

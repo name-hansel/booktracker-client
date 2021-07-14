@@ -18,10 +18,18 @@ const Dashboard = () => {
       <Sidebar userDispatch={userDispatch} />
       <section className="main">
         <Switch>
-          <Route exact path={["/user", "/user/library"]} children={Library} />
-          <Route exact path="/user/track-book" children={TrackBook} />
-          <Route exact path="/user/lists" children={Lists} />
-          <Route exact path="/user/review-book" children={Review} />
+          <Route exact path={["/user", "/user/library"]}>
+            <Library />
+          </Route>
+          <Route exact path="/user/track-book">
+            <TrackBook />
+          </Route>
+          <Route exact path="/user/lists">
+            <Lists />
+          </Route>
+          <Route exact path="/user/review-book">
+            <Review />
+          </Route>
         </Switch>
       </section>
     </main>

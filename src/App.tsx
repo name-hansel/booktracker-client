@@ -36,7 +36,7 @@ import "./App.scss";
 import Spinner from "./components/Spinner";
 import BookPage from "./pages/BookPage";
 
-function App() {
+function App(): JSX.Element {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
   const userContextValues = {
     userState,
