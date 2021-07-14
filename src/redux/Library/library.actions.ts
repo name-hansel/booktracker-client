@@ -2,6 +2,7 @@ import axios from "../../utils";
 import { Dispatch } from "redux";
 
 import { LibraryBook } from "../../interfaces";
+import { setNewAccessToken } from "../../utils";
 
 export const getLibraryData =
   (userId: string) => async (dispatch: Dispatch) => {
@@ -31,6 +32,9 @@ export const addBookToLibrary =
         body,
         config
       );
+      if (data.accessToken) {
+        setNewAccessToken(data.accessToken);
+      }
       dispatch({
         type: "ADD_BOOK_TO_LIBRARY",
         payload: {
