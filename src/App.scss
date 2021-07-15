@@ -308,13 +308,31 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    .library-search {
+      // width: 85%;
+      .library-search-input {
+        background-color: rgba($col0, 0.8);
+        border: 1px solid rgba($col1, 0.2);
+        border-radius: 0.2rem;
+        outline: none;
+        padding: 0.5rem;
+        font-size: 1rem;
+        color: $col5;
+        letter-spacing: 0.1rem;
+        transition: background-color 0.3s ease;
+      }
+      .library-search-input:focus {
+        background-color: rgba($col0, 0.4);
+      }
+    }
+
     .links {
       display: flex;
       flex-direction: column;
       width: 85%;
       background-color: rgba($col4, 0.8);
       border-radius: 0.2rem;
-      margin: 0 0 1rem;
+      margin: 1rem 0 1rem;
       a {
         font-family: "Lato", sans-serif;
         // margin: 0.1rem 0;
@@ -341,7 +359,8 @@ nav {
       display: flex;
       flex-direction: column;
       border-radius: 0.4rem;
-      width: 80%;
+      width: 85%;
+      // margin: 1rem 0;
       button {
         margin: 0;
         background-color: rgba($col2, 0.8);
@@ -381,6 +400,9 @@ nav {
     background-color: $col1;
     width: 80%;
     border-radius: 0 0.3rem 0.3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -546,6 +568,67 @@ nav {
           font-weight: bold;
           margin: 0 0.2rem 0 0;
           color: rgba($col5, 0.9);
+        }
+      }
+    }
+  }
+}
+
+// Library styling
+.books-div {
+  margin: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  .book-item {
+    background-color: rgba($col0, 0.8);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 5rem;
+      // height: 50%;
+      align-self: flex-start;
+      padding: 0.5rem 0;
+    }
+    .book-details {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .book-text {
+        padding: 0.2rem 0.1rem;
+        h1 {
+          @include subheading();
+          font-size: 1.2rem;
+          color: $col5;
+          text-overflow: ellipsis;
+        }
+        h2 {
+          color: $col5;
+          font-size: 1rem;
+        }
+        h3 {
+          margin: 0.2rem 0;
+          color: $col4;
+          font-size: 0.8rem;
+          font-style: italic;
+        }
+      }
+      .book-options {
+        display: flex;
+        justify-content: space-between;
+        .delete-btn {
+          font-size: 1.2rem;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          color: rgba($col3, 0.8);
+          transition: color 0.1s ease-in-out;
+        }
+        .delete-btn:hover {
+          color: rgba($col3, 1);
         }
       }
     }

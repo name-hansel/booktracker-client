@@ -11,6 +11,15 @@ const Sidebar = ({
 }) => {
   return (
     <section className="sidebar">
+      <div className="library-search">
+        <form>
+          <input
+            type="text"
+            placeholder="Search your library..."
+            className="library-search-input"
+          />
+        </form>
+      </div>
       <div className="links">
         <NavLink to="/user/library" activeClassName="active">
           Library

@@ -5,7 +5,7 @@ import { getLibraryData } from "../../redux/Library/library.actions";
 import UserContext from "../../context/user";
 import { State } from "../../interfaces";
 import Spinner from "../../components/Spinner";
-import LibraryItem from "../../components/LibraryItem";
+import BookItem from "../../components/BookItem";
 
 const Library: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,18 +16,24 @@ const Library: React.FC = () => {
     if (!userState.loading) dispatch(getLibraryData(userState.user._id));
   }, []);
 
-  return !loading ? (
-    library.length === 0 ? (
-      <h1>No books</h1>
-    ) : (
-      <>
-        {library.map((book) => (
-          <LibraryItem book={book} key={book.googleBooksId} />
-        ))}
-      </>
-    )
-  ) : (
-    <Spinner />
+  return (
+    <>
+      <div className="books-div">
+        {!loading ? (
+          library.length === 0 ? (
+            <h1>No books</h1>
+          ) : (
+            <>
+              {library.map((book) => (
+                <BookItem book={book} key={book.googleBooksId} />
+              ))}
+            </>
+          )
+        ) : (
+          <Spinner />
+        )}
+      </div>
+    </>
   );
 };
 
