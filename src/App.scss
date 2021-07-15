@@ -396,13 +396,10 @@ nav {
   }
   .main {
     border-left: 1px solid rgba($col2, 0.5);
-    padding: 1rem;
+    padding: 1rem 0;
     background-color: $col1;
     width: 80%;
     border-radius: 0 0.3rem 0.3rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }
 
@@ -422,13 +419,12 @@ nav {
   cursor: pointer;
 }
 
+// Book page
 .page-main {
   position: absolute;
   top: 4.5rem;
-  // bottom: 1.5rem;
   left: 1.5rem;
   right: 1.5rem;
-  // background-color: rgba($col1, 0.8);
   border-radius: 0.3rem;
   display: flex;
   justify-content: space-between;
@@ -438,7 +434,6 @@ nav {
     padding: 3.5rem 1.5rem 2rem;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
     .stars {
       margin: 0.8rem 0 0;
@@ -576,8 +571,9 @@ nav {
 
 // Library styling
 .books-div {
-  margin: 0 1rem;
+  padding: 0 1rem;
   display: grid;
+  // align-items: flex-start;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   .book-item {
@@ -587,8 +583,7 @@ nav {
     display: flex;
     justify-content: space-between;
     img {
-      width: 5rem;
-      // height: 50%;
+      width: 25%;
       align-self: flex-start;
       padding: 0.5rem 0;
     }
