@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, RouteComponentProps } from "react-router-dom";
 import axios from "../utils";
 import DOMPurify from "dompurify";
@@ -8,7 +9,11 @@ import AlertContext from "../context/alert";
 import { setAlert } from "../actions/alert";
 import UserContext from "../context/user";
 import { useDispatch } from "react-redux";
-import { addBookToLibrary } from "../redux/Library/library.actions";
+import {
+  addBookToLibrary,
+  getLibraryData,
+} from "../redux/Library/library.actions";
+import { State } from "../interfaces";
 
 interface RouterProps {
   bookId: string;
@@ -20,6 +25,7 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
 }) => {
   const { alertDispatch } = React.useContext(AlertContext);
   const { userState } = React.useContext(UserContext);
+  const { library, loading } = useSelector((state: State) => state.library);
 
   const dispatch = useDispatch();
 
@@ -56,6 +62,18 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
     [alertDispatch]
   );
 
+  const addBook = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    dispatch(
+      addBookToLibrary({
+        googleBooksId: match.params.bookId,
+        title: bookData.title,
+        authors: bookData.authors,
+        imageURL: bookData.imageURL,
+      })
+    );
+  };
+
   React.useEffect(() => {
     const bookId = match.params.bookId;
     setBookData({
@@ -65,7 +83,13 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
     getBookData(bookId);
   }, [match.params.bookId]);
 
-  return bookData.loading ? (
+  // If library is not loaded, load it
+  React.useEffect(() => {
+    if (!userState.loading && library.length === 0 && loading)
+      dispatch(getLibraryData(userState.user._id));
+  });
+
+  return bookData.loading || loading ? (
     <Spinner />
   ) : (
     <>
@@ -92,20 +116,16 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
           )}
           {userState.isAuthenticated ? (
             <div className="button-div">
-              <button
-                onClick={(e) =>
-                  dispatch(
-                    addBookToLibrary({
-                      googleBooksId: match.params.bookId,
-                      title: bookData.title,
-                      authors: bookData.authors,
-                      imageURL: bookData.imageURL,
-                    })
-                  )
-                }
-              >
-                Add to library
-              </button>
+              {library
+                .map((book) => book.googleBooksId)
+                .indexOf(match.params.bookId) === -1 ? (
+                <button onClick={(e) => addBook(e)}>Add to library</button>
+              ) : (
+                <>
+                  <button>Add to list</button>
+                  <button>Remove from library</button>
+                </>
+              )}
               <button>Review Book</button>
             </div>
           ) : (

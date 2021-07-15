@@ -2,12 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import { logout } from "../actions/user";
-import { UserAction } from "../interfaces";
+import { UserAction, UserState } from "../interfaces";
 
 const Sidebar = ({
   userDispatch,
+  userState,
 }: {
   userDispatch: React.Dispatch<UserAction>;
+  userState: UserState;
 }) => {
   return (
     <section className="sidebar">
@@ -38,7 +40,7 @@ const Sidebar = ({
         <button>
           <NavLink to="/user/profile" activeClassName="user-active">
             <i className="fa fa-user" aria-hidden="true"></i>
-            Username
+            {userState.user.username}
           </NavLink>
         </button>
         <button>

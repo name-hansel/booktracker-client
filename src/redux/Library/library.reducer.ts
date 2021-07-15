@@ -19,6 +19,14 @@ const reducer = (state = initialState, action: LibraryAction): LibraryState => {
         library: [action.payload.book, ...state.library],
         loading: false,
       };
+    case "REMOVE_BOOK_FROM_LIBRARY":
+      return {
+        ...state,
+        library: state.library.filter(
+          (book) => book.googleBooksId !== action.payload.googleBooksId
+        ),
+        loading: false,
+      };
     default:
       return state;
   }

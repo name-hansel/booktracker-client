@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 
 import UserContext from "../context/user";
@@ -15,7 +14,7 @@ const Dashboard = () => {
 
   return !userState.loading ? (
     <main className="dashboard-main">
-      <Sidebar userDispatch={userDispatch} />
+      <Sidebar userDispatch={userDispatch} userState={userState} />
       <section className="main">
         <Switch>
           <Route exact path={["/user", "/user/library"]}>

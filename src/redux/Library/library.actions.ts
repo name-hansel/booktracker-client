@@ -45,3 +45,21 @@ export const addBookToLibrary =
       console.error(err.message);
     }
   };
+
+export const deleteBookFromLibrary =
+  (bookId: string) => async (dispatch: Dispatch) => {
+    try {
+      dispatch({
+        type: "REMOVE_BOOK_FROM_LIBRARY",
+        payload: {
+          googleBooksId: bookId,
+        },
+      });
+      const { data } = await axios.delete(`/library/${bookId}`);
+      if (data.accessToken) {
+        setNewAccessToken(data.accessToken);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };

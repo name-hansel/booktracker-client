@@ -96,6 +96,12 @@ export interface ADD_BOOK_TO_LIBRARY {
     book: LibraryBook;
   };
 }
+export interface REMOVE_BOOK_FROM_LIBRARY {
+  type: "REMOVE_BOOK_FROM_LIBRARY";
+  payload: {
+    googleBooksId: string;
+  };
+}
 
 export interface LibraryBook {
   googleBooksId: string;
@@ -110,7 +116,10 @@ export interface LibraryState {
   loading: boolean;
 }
 
-export type LibraryAction = GET_LIBRARY | ADD_BOOK_TO_LIBRARY;
+export type LibraryAction =
+  | GET_LIBRARY
+  | ADD_BOOK_TO_LIBRARY
+  | REMOVE_BOOK_FROM_LIBRARY;
 
 // State interface
 export interface State {
