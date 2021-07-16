@@ -49,16 +49,16 @@ export const addBookToLibrary =
 export const deleteBookFromLibrary =
   (bookId: string) => async (dispatch: Dispatch) => {
     try {
+      const { data } = await axios.delete(`/library/${bookId}`);
+      if (data.accessToken) {
+        setNewAccessToken(data.accessToken);
+      }
       dispatch({
         type: "REMOVE_BOOK_FROM_LIBRARY",
         payload: {
           googleBooksId: bookId,
         },
       });
-      const { data } = await axios.delete(`/library/${bookId}`);
-      if (data.accessToken) {
-        setNewAccessToken(data.accessToken);
-      }
     } catch (err) {
       console.error(err.message);
     }

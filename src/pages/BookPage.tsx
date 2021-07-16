@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import {
   addBookToLibrary,
   getLibraryData,
+  deleteBookFromLibrary
 } from "../redux/Library/library.actions";
 import { State } from "../interfaces";
 
@@ -123,7 +124,13 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
               ) : (
                 <>
                   <button>Add to list</button>
-                  <button>Remove from library</button>
+                  <button
+                    onClick={(e) =>
+                      dispatch(deleteBookFromLibrary(match.params.bookId))
+                    }
+                  >
+                    Remove from library
+                  </button>
                 </>
               )}
               <button>Review Book</button>

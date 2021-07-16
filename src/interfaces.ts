@@ -107,7 +107,7 @@ export interface LibraryBook {
   googleBooksId: string;
   title: string;
   authors: string[];
-  dateAdded?: string;
+  addedAt?: Date;
   imageURL: string;
 }
 

@@ -17,8 +17,7 @@ const BookItem = ({ book }: { book: LibraryBook }) => {
             <h1>{book.title}</h1>
           </Link>
           <h2>{book.authors}</h2>
-          {/* Replace */}
-          <h3>Added 1 hour ago</h3>
+          <h3>{book.addedAt && new Date(book.addedAt).toLocaleDateString()}</h3>
         </div>
         <div className="book-options">
           <button>Add to list</button>

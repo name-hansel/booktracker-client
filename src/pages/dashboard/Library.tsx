@@ -21,7 +21,7 @@ const Library: React.FC = () => {
       <div className="books-div">
         {!loading ? (
           library.length === 0 ? (
-            <h1>No books</h1>
+            <h1 className="indicator-text">No books</h1>
           ) : (
             <>
               {library.map((book) => (
