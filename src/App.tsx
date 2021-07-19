@@ -35,6 +35,7 @@ import Dashboard from "./pages/Dashboard";
 import "./App.scss";
 import Spinner from "./components/Spinner";
 import BookPage from "./pages/BookPage";
+import ResendLink from "./pages/auth/ResendLink";
 
 function App(): JSX.Element {
   const [userState, userDispatch] = useReducer(userReducer, initialUserState);
@@ -73,6 +74,7 @@ function App(): JSX.Element {
               <Route path="/reset-password/:hash" component={ResetPassword} />
               <Route path="/verify/:hash" component={Verify} />
               <Route path="/book/:bookId" component={BookPage} />
+              <Route path="/resend-verification-link" component={ResendLink} />
               <ProtectedRoute path="/user" component={Dashboard} />
               <ProtectedRoute
                 path="/change-password"

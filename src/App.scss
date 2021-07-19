@@ -12,10 +12,10 @@ body {
 
 * {
   font-family: "Martel", serif;
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+  // -webkit-user-select: none; /* Safari */
+  // -moz-user-select: none; /* Firefox */
+  // -ms-user-select: none; /* IE10+/Edge */
+  // user-select: none; /* Standard */
 }
 
 *,
@@ -78,11 +78,10 @@ a {
       border-radius: 0.3rem;
       border: 1px solid $main;
       outline: none;
-      padding: 0.5rem;
+      padding: 0.3rem 0.5rem;
       background-color: transparent;
       color: $main;
       margin-bottom: 0.5rem;
-      letter-spacing: 0.1rem;
       font-size: 1rem;
     }
     @include button();

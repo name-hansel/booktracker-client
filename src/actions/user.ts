@@ -216,3 +216,31 @@ export const resetPassword = async (
     return false;
   }
 };
+
+export const resendVerificationLink = async (
+  alertDispatch: React.Dispatch<AlertAction>,
+  email: string
+) => {
+  // Set headers and body
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ email });
+  try {
+    const res = await axios.post(`/auth/resend-verification`, body, config);
+    setAlert(alertDispatch, {
+      text: res.data.message,
+      type: "success",
+    });
+    return true;
+  } catch (err) {
+    console.error(err.message);
+    setAlert(alertDispatch, {
+      text: err.response.data.error,
+      type: "danger",
+    });
+    return false;
+  }
+};

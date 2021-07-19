@@ -109,6 +109,11 @@ const Register = () => {
           <span>Login</span>
         </Link>
       </p>
+      <p>
+        <Link to="/resend-verification-link">
+          <span>Resend Verification Link</span>
+        </Link>
+      </p>
     </main>
   );
 };
