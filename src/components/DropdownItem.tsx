@@ -23,7 +23,7 @@ const DropdownItem = ({
         src={book.imageURL ? book.imageURL : "/placeholder.jpg"}
         alt={book.title}
       />
-      <div className="book-details">
+      <div className="dropdown-details">
         <h1>{book.title}</h1>
         <h3>{book.authors && book.authors.join(", ")}</h3>
         <p>{book.date}</p>

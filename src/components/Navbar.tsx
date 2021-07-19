@@ -36,15 +36,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <h1>
+    <nav className="nav">
+      <h1 className="title">
         {userState.isAuthenticated ? (
           <Link to="/user/library">Booktracker</Link>
         ) : (
           <Link to="/">Booktracker</Link>
         )}
       </h1>
-      <div>
+      <div className="search-form-div">
         <form>
           <input
             type="text"

@@ -1,191 +1,164 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Merriweather:wght@400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Martel:wght@300;700;900&display=swap");
 
-$col0: #faf1e6;
-$col1: #f2dabe;
-$col2: #ffc074;
-$col3: #ffa02c;
-$col4: #b6c867;
-$col5: #00584b;
+$bg: #f8f5f1;
+$main: #132c33;
+$hl1: #f8a488;
+$hl2: #5aa897;
 
-* {
-  margin: 0;
-  box-sizing: content-box;
-  padding: 0;
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
+html,
+body {
+  background-color: $bg;
 }
 
-body {
-  background-color: $col0;
+* {
+  font-family: "Martel", serif;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
 }
 
-@mixin heading {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  font-size: 2.5rem;
-}
-
-@mixin subheading {
-  font-family: "Merriweather", serif;
-  font-weight: 400;
-}
-
 @mixin button {
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  cursor: pointer;
-  border-radius: 0.2rem;
-  margin: 0 1.5rem;
-  padding: 0.5rem 1.2rem;
-  background-color: rgba($col2, 0.4);
-  border: 1px solid $col2;
-  margin: 1rem 1.5rem;
-  text-decoration: none;
-  color: $col3;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
+  button {
+    min-width: 8rem;
+    align-self: center;
+    margin: 1.2rem 0;
+    padding: 0.5rem 1.2rem;
+    font-weight: 700;
+    border: 1px solid $hl1;
+    border-radius: 0.3rem;
+    background-color: rgba($hl1, 0.2);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    color: $hl1;
+  }
+  button:hover {
+    background-color: rgba($hl1, 0.4);
+  }
 }
 
-@mixin input {
-  background-color: transparent;
-  border: 0.1rem solid $col5;
-  border-radius: 0.2rem;
-  outline: none;
-  padding: 0.5rem;
-  padding-right: 1.8rem;
-  font-size: 1rem;
-  color: $col5;
-  letter-spacing: 0.1rem;
-}
-
-@mixin center-main {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@mixin auth-main {
-  border-radius: 0.4rem;
-  margin: 2rem 0;
-  background-color: rgba($col4, 0.2);
-  width: 35%;
-  height: 30rem;
+@mixin main {
+  width: 90vw;
+  margin: 1rem auto;
+  min-height: 80vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-content: space-evenly;
   h1 {
-    @include subheading;
-    color: $col5;
+    font-weight: 700;
+    color: $hl2;
   }
   form {
-    margin: -1rem;
+    width: 75%;
+    padding: 0.5rem;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
-    input {
-      @include input;
-      margin-bottom: 0.2rem;
-      font-size: 1rem;
-      width: 15.625rem;
-    }
     label {
-      margin: 0.5rem 0;
+      color: $main;
+      margin: 0.2rem 0;
       letter-spacing: 0.1rem;
-      color: $col5;
     }
-    button {
-      @include button();
-      align-self: center;
-      width: auto;
+    input {
+      border-radius: 0.3rem;
+      border: 1px solid $main;
+      outline: none;
+      padding: 0.5rem;
+      background-color: transparent;
+      color: $main;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1rem;
+      font-size: 1rem;
     }
-    button:hover {
-      background-color: rgba($col2, 0.6);
-    }
+    @include button();
   }
   p {
-    color: $col5;
+    color: rgba($main, 0.8);
+    margin: 0.2rem 0;
     span {
-      color: $col2;
+      color: $hl2;
       font-weight: bold;
     }
   }
 }
 
-.indicator-text {
-  color: rgba($col3, 0.5);
-  font-size: 1rem;
-  @include subheading();
+.container {
+  margin: 0 auto;
+  max-width: 1300px;
+  padding: 1rem 1.2rem 0;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
-// Spinner
-.loader {
-  border: 0.5rem solid $col1;
-  border-radius: 50%;
-  border-top: 0.5rem solid $col5;
-  width: 3rem;
-  height: 3rem;
-  animation: spin 1s linear infinite;
-  position: fixed;
-  top: 40%;
-  left: 45%;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-nav {
+.nav {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 1rem 1.5rem;
-  a {
-    @include heading;
-    color: $col5;
+  h1 {
+    flex-grow: 2;
+    a {
+      text-decoration: none;
+      font-size: 2.5rem;
+      color: $hl2;
+      font-weight: 900;
+    }
   }
-  input {
-    background-color: rgba($col1, 0.5);
-    border: 1px solid rgba($col1, 0.8);
-    border-radius: 0.2rem;
-    outline: none;
-    padding: 0.5rem;
-    padding-right: 1.8rem;
-    width: 25rem;
-    font-size: 1rem;
-    color: $col5;
-    letter-spacing: 0.1rem;
-    transition: background-color 0.3s ease;
-  }
-  input:focus {
-    background-color: rgba($col1, 0.8);
-  }
-
-  div {
+  .search-form-div {
+    flex: 1;
+    flex-basis: 15rem;
     position: relative;
-    display: inline-block;
-    i {
-      margin: 0 -1.6rem;
-      color: $col5;
+    form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      input {
+        width: 100%;
+        border-radius: 0.3rem;
+        border: none;
+        outline: none;
+        padding: 0.5rem;
+        background-color: rgba($hl2, 0.3);
+        color: $main;
+        transition: all 0.2s ease-in-out;
+      }
+      i {
+        margin: 0 93%;
+        position: absolute;
+        font-size: 1.2rem;
+        color: $main;
+      }
+
+      input:focus {
+        background-color: rgba($hl2, 0.6);
+      }
     }
     .dropdown-options {
+      a {
+        text-decoration: none;
+      }
       position: absolute;
-      background-color: $col0;
-      width: 27.4rem;
-      margin: 0.8rem 0;
+      background-color: rgba($hl2, 0.5);
+      width: 100%;
+      border-radius: 0.3rem;
+      margin: 0.2rem 0;
       z-index: 1;
-      border-radius: 0.2rem;
-      display: flex;
-      flex-direction: column;
       .option {
         cursor: pointer;
         display: flex;
@@ -194,23 +167,26 @@ nav {
         img {
           width: 2.5rem;
         }
-        .book-details {
+        .dropdown-details {
           * {
-            color: $col3;
+            text-decoration: none;
+            color: $main;
             font-size: 0.8rem;
             margin: 0.2rem 0.6rem;
             letter-spacing: 1px;
           }
           h1 {
+            font-weight: 900;
             font-size: 0.9rem;
           }
           h3 {
+            font-weight: 700;
             font-size: 0.8rem;
           }
         }
       }
       .option:hover {
-        background-color: rgba($col2, 0.5);
+        background-color: rgba($hl2, 0.6);
       }
       .option:first-child {
         padding: 0.3rem 0.8rem;
@@ -223,127 +199,120 @@ nav {
   }
 }
 
-// Landing
 .landing-main {
-  @include center-main();
-  p {
-    @include subheading;
-    color: $col5;
-    font-size: 2rem;
-    margin: 2rem;
-    span {
-      @include heading;
-      color: $col4;
-    }
+  width: 100%;
+  margin: 1rem auto;
+  min-height: 80vh;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  img {
+    margin: 0 auto;
+    flex-grow: 1;
+    width: 90%;
+    max-width: 25rem;
+    flex-basis: 25rem;
   }
-
-  div {
+  .landing-text {
+    margin: 2rem 1rem;
+    line-height: 3rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    a {
-      button {
-        @include button;
+    p {
+      font-weight: 700;
+      font-size: 2.1rem;
+      color: $hl2;
+      span {
+        font-weight: 900;
+        color: $main;
+        margin-left: 0.2rem;
       }
-      button:hover {
-        background-color: rgba($col2, 0.6);
+    }
+    .btn-div {
+      margin: 1rem 0;
+      width: 50%;
+      display: flex;
+      flex-wrap: wrap;
+      // flex-basis: 10rem;
+      justify-content: space-evenly;
+      a {
+        button {
+          width: 8rem;
+          margin: 0 1rem;
+          padding: 0.6rem 1.4rem;
+          outline: none;
+          border: 1px solid $hl1;
+          border-radius: 0.3rem;
+          font-weight: 700;
+          color: $hl1;
+          background-color: rgba($hl1, 0.3);
+          transition: background-color 0.2s ease-in-out;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: rgba($hl1, 0.5);
+        }
       }
     }
   }
 }
 
-// Register
-.register-main {
-  @include center-main;
-  @include auth-main();
+.forgot-password-main,
+.login-main,
+.register-main,
+.reset-password-main,
+.verify-main,
+.resend-main {
+  @include main();
 }
 
-// Login
-.login-main {
-  @include center-main;
-  @include auth-main();
-  height: 25rem;
-}
-
-// Forgot password
-.forgot-password-main {
-  @include center-main;
-  @include auth-main();
-  height: 15rem;
-}
-
-// Verify
 .verify-main {
-  @include center-main();
-  @include auth-main();
-  height: 10rem;
   h1 {
-    // background-color: rgba($col4, 0.9);
-    padding: 1rem 1.5rem;
-    border-radius: 0.6rem;
     font-size: 1rem;
-    color: $col5;
     letter-spacing: 0.1rem;
   }
-  button {
-    @include button();
-  }
+  @include button();
 }
 
-// Reset password
-.reset-password-main {
-  @include center-main;
-  @include auth-main();
-  height: 20rem;
-}
-
-// Dashboard
 .dashboard-main {
-  position: absolute;
-  top: 4.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
   display: flex;
-  padding: 0 0 1rem;
-  min-height: 85%;
-  // Sidebar
+  flex-wrap: wrap;
   .sidebar {
-    width: 20%;
-    border-radius: 0.3rem 0 0 0.3rem;
-    padding: 1rem 0;
-    background-color: rgba($col1, 0.9);
+    flex: 0 1 16rem;
+    margin: 0 1rem 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     .library-search {
-      // width: 85%;
+      flex-grow: 1;
+      width: 100%;
       .library-search-input {
-        background-color: rgba($col0, 0.8);
-        border: 1px solid rgba($col1, 0.2);
+        width: 100%;
+        background-color: rgba($hl2, 0.2);
         border-radius: 0.2rem;
+        border: none;
         outline: none;
         padding: 0.5rem;
-        font-size: 1rem;
-        color: $col5;
-        letter-spacing: 0.1rem;
+        color: $main;
         transition: background-color 0.3s ease;
       }
       .library-search-input:focus {
-        background-color: rgba($col0, 0.4);
+        background-color: rgba($hl2, 0.4);
       }
     }
-
     .links {
       display: flex;
       flex-direction: column;
-      width: 85%;
-      background-color: rgba($col4, 0.8);
+      width: 100%;
+      background-color: rgba($hl1, 0.6);
       border-radius: 0.2rem;
-      margin: 1rem 0 1rem;
+      margin: 0.5rem 0 0.5rem;
       a {
-        font-family: "Lato", sans-serif;
-        // margin: 0.1rem 0;
-        color: $col0;
-        font-size: 1.2rem;
+        color: $bg;
+        font-size: 1rem;
         padding: 0.6rem 1rem;
       }
       a:first-child {
@@ -353,23 +322,21 @@ nav {
         border-radius: 0 0 0.2rem 0.2rem;
       }
       .active {
-        background-color: rgba($col4, 0.9);
+        background-color: rgba($hl1, 0.9);
         font-weight: bold;
       }
       a:hover {
-        background-color: rgba($col4, 0.9);
+        background-color: rgba($hl1, 0.9);
       }
     }
-
     .bottom-links {
       display: flex;
       flex-direction: column;
       border-radius: 0.2rem;
-      width: 85%;
-      // margin: 1rem 0;
+      width: 100%;
       button {
         margin: 0;
-        background-color: rgba($col2, 0.8);
+        background-color: rgba($hl2, 0.9);
         border: none;
         cursor: pointer;
         box-shadow: none;
@@ -378,7 +345,8 @@ nav {
         a,
         span {
           display: flex;
-          color: $col0;
+          align-items: center;
+          color: $bg;
           padding: 0.6rem 1rem;
           width: auto;
         }
@@ -393,243 +361,87 @@ nav {
         border-radius: 0 0 0.2rem 0.2rem;
       }
       button:hover {
-        background-color: rgba($col2, 1);
+        background-color: rgba($hl2, 1);
       }
       .user-active {
-        background-color: rgba($col2, 1);
+        background-color: rgba($hl2, 1);
       }
     }
   }
   .main {
-    border-left: 1px solid rgba($col2, 0.5);
-    padding: 1rem 0;
-    background-color: $col1;
-    width: 80%;
-    border-radius: 0 0.3rem 0.3rem 0;
+    flex-grow: 1;
+    border-radius: 0.3rem;
+    background-color: rgba($hl2, 0.2);
   }
 }
 
-// Individual book page
-.go-back {
-  z-index: 2;
-  position: absolute;
-  top: 5.8rem;
-  left: 2.8rem;
-  right: 1.5rem;
-  border: none;
-  background-color: transparent;
-  outline: none;
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  color: $col5;
-  cursor: pointer;
+@media only screen and (max-width: 700px) {
+  .landing-main,
+  .forgot-password-main,
+  .login-main,
+  .register-main,
+  .reset-password-main,
+  .verify-main,
+  .resend-main,
+  .dashboard-main {
+    margin-top: 1rem;
+  }
 }
 
-// Book page
-.page-main {
-  position: absolute;
-  top: 4.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  border-radius: 0.3rem;
-  display: flex;
-  justify-content: space-between;
-  padding: 1.5rem 1.5rem 0;
-  .left {
-    width: 15%;
-    padding: 3.5rem 1.5rem 2rem;
-    display: flex;
+@media only screen and (max-width: 800px) {
+  // Horizontal buttons
+  .dashboard-main {
     flex-direction: column;
-    align-items: center;
-    .stars {
-      margin: 0.8rem 0 0;
-      color: rgba($col2, 0.5);
-      i {
-        margin: 0.1rem;
-      }
-      .fill {
-        color: $col3;
-      }
-      .rating-count {
-        color: $col3;
-      }
-    }
-    .button-text {
-      margin: 2rem 0;
-
-      text-align: center;
-      color: $col5;
-      font-size: 1.1rem;
-      p {
-        margin: 1rem;
-      }
-    }
-    .button-div {
-      display: flex;
-      flex-direction: column;
-      margin: 1rem;
-      button {
-        @include button();
-        background-color: rgba($col4, 0.6);
-        border: none;
-        color: $col0;
-        margin: 0.5rem;
-        a {
-          color: $col0;
-          font-size: 1rem;
-          font-weight: bold;
-        }
-      }
-      button:hover {
-        background-color: rgba($col4, 0.8);
-      }
-    }
-    img {
-      width: 75%;
-    }
-  }
-
-  .right {
-    width: 75%;
-    padding: 1.5rem;
-    margin: 0 auto;
-    .main-details {
-      padding: 1rem 2rem;
-      .title {
-        font-size: 2rem;
-        font-family: "Merriweather", serif;
-        font-weight: 900;
-        color: $col5;
-      }
-      .authors {
-        font-family: "Merriweather", serif;
-        padding: 0.4rem 0.2rem;
-        font-size: 1.2rem;
-        color: rgba($col5, 0.8);
-      }
-    }
-    .more-details {
-      background-color: rgba($col1, 0.8);
+    .sidebar {
+      flex: 0;
       margin: 0;
-      border-radius: 0.3rem;
-      padding: 1rem 2rem;
-      p {
-        ul {
-          padding: 0 1.5rem;
+      .library-search {
+        order: 1;
+      }
+      .links {
+        flex-direction: row;
+        text-align: center;
+        a {
+          flex: 1;
         }
       }
-      .options {
-        display: flex;
-        justify-content: space-around;
-        margin: 0.5rem 0 0.6rem;
-        .option {
-          background-color: transparent;
-          border: none;
-          border-bottom: 1px solid transparent;
-          cursor: pointer;
-          transition: border-bottom 0.1s ease-in;
-          a {
-            font-family: "Merriweather", serif;
-            font-weight: 900;
-            color: rgba($col5, 0.9);
+      .bottom-links {
+        flex-direction: row;
+        order: -1;
+        button {
+          flex: 1;
+          border-radius: 0;
+          a,
+          span {
+            justify-content: center;
           }
         }
-        .option:hover {
-          border-bottom: 1px solid $col3;
+        button:first-child {
+          border-radius: 0;
         }
-        .active {
-          border-bottom: 1px solid $col3;
-        }
-      }
-      .subtitle {
-        font-size: 1rem;
-        // font-style: italic;
-        font-weight: bold;
-        color: $col4;
-        padding: 0.5rem 0;
-      }
-      .description {
-        font-size: 1rem;
-        text-align: justify;
-        color: $col5;
-      }
-      .more-more-details {
-        background-color: rgba($col4, 0.5);
-        min-width: 10rem;
-        max-width: 40%;
-        padding: 0.5rem 0.8rem;
-        border-radius: 0.3rem;
-        margin: 0.8rem 0;
-        h5 {
-          font-size: 0.9rem;
-          margin: 0.2rem 0;
-          color: rgba($col5, 0.9);
-        }
-        span {
-          font-weight: bold;
-          margin: 0 0.2rem 0 0;
-          color: rgba($col5, 0.9);
+        button:last-child {
+          border-radius: 0;
         }
       }
     }
   }
 }
 
-// Library styling
-.books-div {
-  padding: 0 1rem;
-  display: grid;
-  // align-items: flex-start;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-  .book-item {
-    background-color: rgba($col0, 0.8);
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.2rem;
-    display: flex;
-    justify-content: space-between;
-    img {
-      width: 25%;
-      align-self: flex-start;
-      padding: 0.5rem 0;
+@media only screen and (max-width: 550px) {
+  // Vertical sidebar
+  .nav {
+    .title {
+      text-align: center;
     }
-    .book-details {
-      width: 70%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      .book-text {
-        padding: 0.2rem 0.1rem;
-        h1 {
-          @include subheading();
-          font-size: 1.2rem;
-          color: $col5;
-          text-overflow: ellipsis;
-        }
-        h2 {
-          color: $col5;
-          font-size: 1rem;
-        }
-        h3 {
-          margin: 0.2rem 0;
-          color: $col4;
-          font-size: 0.8rem;
-          font-style: italic;
-        }
-      }
-      .book-options {
-        display: flex;
-        justify-content: space-between;
-        .delete-btn {
-          font-size: 1.2rem;
-          background-color: transparent;
-          border: none;
-          cursor: pointer;
-          color: rgba($col3, 0.8);
-          transition: color 0.1s ease-in-out;
-        }
-        .delete-btn:hover {
-          color: rgba($col3, 1);
+  }
+
+  .dashboard-main {
+    .sidebar {
+      .links {
+        flex-direction: column;
+        // text-align: center;
+        a {
+          flex: 1;
         }
       }
     }
