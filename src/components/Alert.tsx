@@ -8,28 +8,18 @@ interface Props {
 
 const Alert = ({ alerts }: Props) => {
   return (
-    <>
+    <div className="alerts">
       {alerts && alerts.length > 0 ? (
         alerts.map((alert) => (
-          <div
-            key={alert.id}
-            style={{
-              backgroundColor:
-                alert.type === "success"
-                  ? "green"
-                  : alert.type === "danger"
-                  ? "red"
-                  : "gray",
-            }}
-            id={alert.id}
-          >
+          <div key={alert.id} className={`alert ${alert.type}`}>
             {alert.text}
+            {/* Add button to remove alert */}
           </div>
         ))
       ) : (
         <></>
       )}
-    </>
+    </div>
   );
 };
 

@@ -96,6 +96,33 @@ a {
   }
 }
 
+.alerts {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.alert {
+  margin: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  display: flex;
+}
+
+.danger {
+  border: 1px solid red;
+  background-color: rgb(255, 50, 50);
+  color: white;
+}
+
+.success {
+  border: 1px solid green;
+  background-color: rgb(0, 175, 0);
+  color: white;
+}
+
 .container {
   margin: 0 auto 1rem;
   max-width: 1300px;
@@ -431,6 +458,10 @@ a {
 }
 
 @media only screen and (max-width: 550px) {
+  .alerts {
+    margin: 0 auto;
+  }
+
   // Vertical sidebar
   .nav {
     .title {
