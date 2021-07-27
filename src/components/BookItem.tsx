@@ -16,7 +16,7 @@ const BookItem = ({ book }: { book: LibraryBook }) => {
           <Link to={`/book/${book.googleBooksId}`}>
             <h1>{book.title}</h1>
           </Link>
-          <h2>{book.authors}</h2>
+          <h2>{book.authors.join(", ")}</h2>
           <h3>{book.addedAt && new Date(book.addedAt).toLocaleDateString()}</h3>
         </div>
         <div className="book-options">

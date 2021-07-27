@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import {
   addBookToLibrary,
   getLibraryData,
-  deleteBookFromLibrary
+  deleteBookFromLibrary,
 } from "../redux/Library/library.actions";
 import { State } from "../interfaces";
 
@@ -63,15 +63,25 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
     [alertDispatch]
   );
 
-  const addBook = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const addBook = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
-    dispatch(
+    await dispatch(
       addBookToLibrary({
         googleBooksId: match.params.bookId,
         title: bookData.title,
         authors: bookData.authors,
         imageURL: bookData.imageURL,
       })
+    );
+    setAlert(
+      alertDispatch,
+      {
+        text: "Book added to library successfully!",
+        type: "success",
+      },
+      2000
     );
   };
 
@@ -125,9 +135,19 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
                 <>
                   <button>Add to list</button>
                   <button
-                    onClick={(e) =>
-                      dispatch(deleteBookFromLibrary(match.params.bookId))
-                    }
+                    onClick={async (e) => {
+                      await dispatch(
+                        deleteBookFromLibrary(match.params.bookId)
+                      );
+                      setAlert(
+                        alertDispatch,
+                        {
+                          text: "Book removed from library",
+                          type: "success",
+                        },
+                        2000
+                      );
+                    }}
                   >
                     Remove from library
                   </button>

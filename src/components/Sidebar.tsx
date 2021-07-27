@@ -11,6 +11,7 @@ const Sidebar = ({
   userDispatch: React.Dispatch<UserAction>;
   userState: UserState;
 }) => {
+  const [term, setTerm] = React.useState("");
   return (
     <section className="sidebar">
       <div className="library-search">
@@ -19,7 +20,18 @@ const Sidebar = ({
             type="text"
             placeholder="Search your library..."
             className="library-search-input"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
           />
+          {!term ? (
+            <i className="fa fa-search" aria-hidden="true"></i>
+          ) : (
+            <i
+              className="fa fa-times"
+              aria-hidden="true"
+              onClick={(e) => setTerm("")}
+            ></i>
+          )}
         </form>
       </div>
       <div className="links">

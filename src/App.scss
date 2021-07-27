@@ -345,9 +345,10 @@ a {
 
 .dashboard-main {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   .sidebar {
     align-self: flex-start;
+    flex: 1 0 10rem;
     position: sticky;
     top: 2rem;
     flex: 0 1 16rem;
@@ -358,6 +359,7 @@ a {
     .library-search {
       width: 100%;
       .library-search-input {
+        position: relative;
         width: 100%;
         background-color: rgba($hl2, 0.2);
         border-radius: 0.2rem;
@@ -366,6 +368,14 @@ a {
         padding: 0.5rem;
         color: $main;
         transition: background-color 0.3s ease;
+        padding-right: 2rem;
+      }
+      i {
+        position: absolute;
+        right: 0.6rem;
+        font-size: 1rem;
+        top: 0.6rem;
+        cursor: pointer;
       }
       .library-search-input:focus {
         background-color: rgba($hl2, 0.4);
@@ -437,9 +447,60 @@ a {
     }
   }
   .main {
-    flex-grow: 1;
+    flex: 4 0;
     border-radius: 0.3rem;
     background-color: rgba($hl2, 0.2);
+    padding: 1rem;
+    .library-books {
+      display: grid;
+      grid-gap: 0.5rem;
+      grid-template-columns: repeat(2, 50%);
+      justify-content: space-around;
+      .book-item {
+        background-color: $bg;
+        border-radius: 0.3rem;
+        display: flex;
+        img {
+          flex-basis: 5%;
+          border-radius: 0.3rem 0 0 0.3rem;
+          // width: 5rem;
+        }
+        .book-details {
+          flex-basis: 90%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 0.5rem 1rem;
+          .book-text {
+            * {
+              font-weight: 300;
+            }
+            a {
+              h1 {
+                font-weight: 700;
+                margin: 0;
+                padding: 0;
+              }
+              font-size: 0.6rem;
+              color: $main;
+            }
+            h2 {
+              font-size: 0.75rem;
+              color: $hl2;
+              font-weight: bold;
+            }
+            h3 {
+              font-size: 0.65rem;
+              color: $hl2;
+            }
+          }
+          .book-options {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -494,6 +555,14 @@ a {
   .resend-main,
   .dashboard-main {
     margin-top: 1rem;
+  }
+
+  .dashboard-main .main {
+    margin-top: 1rem;
+  }
+
+  .library-books {
+    grid-template-columns: 100% !important;
   }
 }
 
