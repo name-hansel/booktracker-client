@@ -55,9 +55,17 @@ const Navbar = () => {
             onChange={(e) => onChange(e)}
             onFocus={(e) => onChange(e)}
           />
-          <i className="fa fa-search" aria-hidden="true"></i>
+          {!term ? (
+            <i className="fa fa-search" aria-hidden="true"></i>
+          ) : (
+            <i
+              className="fa fa-times"
+              aria-hidden="true"
+              onClick={(e) => setTerm("")}
+            ></i>
+          )}
         </form>
-        {!hide && items.length > 0 && (
+        {!hide && term && items.length > 0 && (
           <section className="dropdown-options">
             {items.length > 0
               ? items.map((book) => (
