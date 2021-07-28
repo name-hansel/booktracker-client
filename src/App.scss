@@ -43,6 +43,9 @@ a {
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     color: $hl1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   button:hover {
     background-color: rgba($hl1, 0.4);
@@ -107,6 +110,14 @@ a {
   position: fixed;
   top: 40%;
   left: 45%;
+}
+
+.button-loader {
+  margin: 0 0.6rem;
+  border: 0.2rem solid $hl1;
+  border-radius: 50%;
+  border-top: 0.2rem solid $bg;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -502,7 +513,7 @@ a {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 860px) {
   // Horizontal buttons
   .dashboard-main {
     flex-direction: column;
@@ -541,6 +552,13 @@ a {
       }
     }
   }
+
+  .dashboard-main .main {
+    margin-top: 1rem;
+  }
+  .library-books {
+    grid-template-columns: 100% !important;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -553,14 +571,6 @@ a {
   .resend-main,
   .dashboard-main {
     margin-top: 1rem;
-  }
-
-  .dashboard-main .main {
-    margin-top: 1rem;
-  }
-
-  .library-books {
-    grid-template-columns: 100% !important;
   }
 }
 

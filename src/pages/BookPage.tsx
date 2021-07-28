@@ -15,6 +15,7 @@ import {
   deleteBookFromLibrary,
 } from "../redux/Library/library.actions";
 import { State } from "../interfaces";
+import ButtonSpinner from "../components/ButtonSpinner";
 
 interface RouterProps {
   bookId: string;
@@ -45,6 +46,11 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
     imageURL: "",
   });
 
+  const [loadingSpinner, setLoadingSpinner] = React.useState({
+    addToLibrary: false,
+    removeFromLibrary: false,
+  });
+
   const getBookData = React.useCallback(
     async (bookId: string) => {
       try {
@@ -67,6 +73,7 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    setLoadingSpinner({ ...loadingSpinner, addToLibrary: true });
     await dispatch(
       addBookToLibrary({
         googleBooksId: match.params.bookId,
@@ -75,10 +82,36 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
         imageURL: bookData.imageURL,
       })
     );
+    setLoadingSpinner({ ...loadingSpinner, addToLibrary: false });
+
     setAlert(
       alertDispatch,
       {
         text: "Book added to library successfully!",
+        type: "success",
+      },
+      2000
+    );
+  };
+
+  const removeBook = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setLoadingSpinner({
+      ...loadingSpinner,
+      removeFromLibrary: true,
+    });
+
+    await dispatch(deleteBookFromLibrary(match.params.bookId));
+    setLoadingSpinner({
+      ...loadingSpinner,
+      removeFromLibrary: false,
+    });
+
+    setAlert(
+      alertDispatch,
+      {
+        text: "Book removed from library",
         type: "success",
       },
       2000
@@ -130,26 +163,20 @@ const BookPage: React.FC<RouteComponentProps<RouterProps>> = ({
               {library
                 .map((book) => book.googleBooksId)
                 .indexOf(match.params.bookId) === -1 ? (
-                <button onClick={(e) => addBook(e)}>Add to library</button>
+                <button onClick={(e) => addBook(e)}>
+                  Add to library{" "}
+                  {loadingSpinner.addToLibrary && (
+                    <ButtonSpinner width={"1rem"} />
+                  )}
+                </button>
               ) : (
                 <>
                   <button>Add to list</button>
-                  <button
-                    onClick={async (e) => {
-                      await dispatch(
-                        deleteBookFromLibrary(match.params.bookId)
-                      );
-                      setAlert(
-                        alertDispatch,
-                        {
-                          text: "Book removed from library",
-                          type: "success",
-                        },
-                        2000
-                      );
-                    }}
-                  >
-                    Remove from library
+                  <button onClick={(e) => removeBook(e)}>
+                    Remove from library{" "}
+                    {loadingSpinner.removeFromLibrary && (
+                      <ButtonSpinner width={"1rem"} />
+                    )}
                   </button>
                 </>
               )}

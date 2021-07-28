@@ -6,6 +6,7 @@ import AlertContext from "../../context/alert";
 import UserContext from "../../context/user";
 import { register } from "../../actions/user";
 import { setAlert } from "../../actions/alert";
+import ButtonSpinner from "../../components/ButtonSpinner";
 
 const Register = () => {
   const { alertDispatch } = useContext(AlertContext);
@@ -18,6 +19,8 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  const [spinner, setSpinner] = React.useState(false);
+
   const { username, email, password } = formData;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +30,7 @@ const Register = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSpinner(true);
     const valid = registerValidation(username, email, password);
     if (password !== formData.confirmPassword)
       setAlert(alertDispatch, {
@@ -41,7 +45,7 @@ const Register = () => {
       });
     else {
       const res = await register(alertDispatch, { username, email, password });
-
+      setSpinner(false);
       if (res)
         setFormData({
           username: "",
@@ -101,7 +105,10 @@ const Register = () => {
           onChange={(e) => onChange(e)}
         />
         <br />
-        <button type="submit">Create Account</button>
+        <button type="submit">
+          <div>Create Account</div>
+          {spinner && <ButtonSpinner width={"1rem"} />}
+        </button>
       </form>
       <p>
         Already have an account?{" "}

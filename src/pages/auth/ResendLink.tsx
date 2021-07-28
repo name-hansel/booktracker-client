@@ -5,15 +5,18 @@ import AlertContext from "../../context/alert";
 import UserContext from "../../context/user";
 import { setAlert } from "../../actions/alert";
 import { resendVerificationLink } from "../../actions/user";
+import ButtonSpinner from "../../components/ButtonSpinner";
 
 const ResendLink = () => {
   const [email, setEmail] = React.useState("");
+  const [spinner, setSpinner] = React.useState(false);
 
   const { alertDispatch } = React.useContext(AlertContext);
   const { userState } = React.useContext(UserContext);
 
-  const resendLink = (e: React.FormEvent<HTMLFormElement>) => {
+  const resendLink = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSpinner(true);
     if (
       email === "" ||
       !email.match(
@@ -25,8 +28,9 @@ const ResendLink = () => {
         type: "danger",
       });
     else {
-      if (resendVerificationLink(alertDispatch, email)) setEmail("");
+      if (resendVerificationLink(alertDispatch, email)) await setEmail("");
     }
+    setSpinner(false);
   };
 
   if (userState.isAuthenticated) {
@@ -46,7 +50,10 @@ const ResendLink = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">Send Verification Link</button>
+        <button type="submit">
+          <div>Send Verification Link</div>
+          {spinner && <ButtonSpinner width={"1rem"} />}
+        </button>
       </form>
     </main>
   );

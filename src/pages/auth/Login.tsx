@@ -7,6 +7,7 @@ import UserContext from "../../context/user";
 import { setAlert } from "../../actions/alert";
 import { login } from "../../actions/user";
 import Spinner from "../../components/Spinner";
+import ButtonSpinner from "../../components/ButtonSpinner";
 
 const Login = () => {
   const { alertDispatch } = useContext(AlertContext);
@@ -17,6 +18,8 @@ const Login = () => {
     password: "",
   });
 
+  const [loginSpinner, setLoginSpinner] = React.useState(false);
+
   const { finder, password } = formData;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,8 +27,9 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoginSpinner(true)
     const valid = loginValidation(finder, password);
     if (valid)
       setAlert(alertDispatch, {
@@ -33,8 +37,9 @@ const Login = () => {
         type: "danger",
       });
     else {
-      login(alertDispatch, userDispatch, { finder, password });
+      await login(alertDispatch, userDispatch, { finder, password });
     }
+    setLoginSpinner(false)
   };
 
   if (userState.isAuthenticated) {
@@ -66,7 +71,10 @@ const Login = () => {
             onChange={(e) => onChange(e)}
           />
           <br />
-          <button type="submit">Login</button>
+          <button type="submit">
+            <div>Login</div>
+            {loginSpinner && <ButtonSpinner width={"1rem"} />}
+          </button>
         </form>
         <p>
           New user?{" "}

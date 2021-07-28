@@ -5,15 +5,18 @@ import AlertContext from "../../context/alert";
 import { setAlert } from "../../actions/alert";
 import { forgotPassword } from "../../actions/user";
 import UserContext from "../../context/user";
+import ButtonSpinner from "../../components/ButtonSpinner";
 
 const ForgotPassword = () => {
   const [email, setEmail] = React.useState("");
+  const [spinner, setSpinner] = React.useState(false);
 
   const { alertDispatch } = React.useContext(AlertContext);
   const { userState } = React.useContext(UserContext);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSpinner(true);
     if (
       email === "" ||
       !email.match(
@@ -25,9 +28,10 @@ const ForgotPassword = () => {
         type: "danger",
       });
     else {
-      forgotPassword(alertDispatch, email);
+      await forgotPassword(alertDispatch, email);
       setEmail("");
     }
+    setSpinner(false);
   };
 
   if (userState.isAuthenticated) {
@@ -47,7 +51,10 @@ const ForgotPassword = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">Send Link</button>
+        <button type="submit">
+          <div>Send Link</div>
+          {spinner && <ButtonSpinner width={"1rem"} />}
+        </button>
       </form>
       <p>
         <Link to="/login">

@@ -6,6 +6,7 @@ import UserContext from "../../context/user";
 import { setAlert } from "../../actions/alert";
 import { changePasswordValidation } from "../../utils";
 import { resetPassword } from "../../actions/user";
+import ButtonSpinner from "../../components/ButtonSpinner";
 
 interface Props {
   hash: string;
@@ -17,6 +18,8 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
 }) => {
   const { alertDispatch } = React.useContext(AlertContext);
   const { userState } = React.useContext(UserContext);
+
+  const [spinner, setSpinner] = React.useState(false);
   const [formData, setFormData] = React.useState({
     password: "",
     confirmPassword: "",
@@ -30,6 +33,7 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSpinner(true);
     const valid = changePasswordValidation(password);
     if (password !== confirmPassword)
       setAlert(alertDispatch, {
@@ -48,6 +52,8 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
         match.params.hash,
         password
       );
+      setSpinner(false);
+
       if (res) {
         setFormData({
           password: "",
@@ -85,7 +91,10 @@ const ResetPassword: React.FC<RouteComponentProps<Props>> = ({
           value={confirmPassword}
           onChange={(e) => onChange(e)}
         />
-        <button type="submit">Reset Password</button>
+        <button type="submit">
+          <div>Reset Password</div>
+          {spinner && <ButtonSpinner width={"1rem"} />}
+        </button>
       </form>
     </main>
   );
